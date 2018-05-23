@@ -1,0 +1,20 @@
+language: php
+
+php:
+  - 7.1
+  - 7.2
+
+before_script:
+  - cp .env.travis .env
+  - composer install --no-interaction
+  - php artisan key:generate
+
+before_install:
+  - mysql -e 'CREATE DATABASE eecom_testing;'
+  
+services:
+  - mysql
+
+cache:
+  directories:
+    - vendor
