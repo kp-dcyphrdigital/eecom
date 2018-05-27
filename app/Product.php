@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -12,6 +13,17 @@ class Product extends Model
     public function categories()
     {
         return $this->belongsToMany('App\Category');
+    }
+
+    /**
+     * Products can be filtered by category/categories
+     */
+    public function byCategory($categories)
+    {
+    	$categories = explode(',', $categories);
+		return $this->whereHas('categories', function ($query) use ($categories) {
+		    $query->whereIn('id', $categories);
+		})->get();
     }
 
 	/**

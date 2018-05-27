@@ -10,63 +10,76 @@ class ViewProductsTests extends TestCase
 {
 	use RefreshDatabase;
 
+    private $category1, $category2, $category3;
+    private $product1, $product2, $product3;
+
+    public function setUp()
+    {
+        parent::setUp();
+        $this->category1 = factory('App\Category')->create();
+        $this->category2 = factory('App\Category')->create();
+        $this->category3 = factory('App\Category')->create();
+        $this->product1 = factory('App\Product')->create([
+            'name' => 'product1'
+        ]);
+        $this->product2 = factory('App\Product')->create([
+            'name' => 'product2'
+        ]);
+        $this->product3 = factory('App\Product')->create([
+            'name' => 'product3'
+        ]);
+        $this->category1->products()->attach($this->product1);
+        $this->category1->products()->attach($this->product2);
+        $this->category2->products()->attach($this->product2);
+        $this->category3->products()->attach($this->product3);
+    }
+
     /** @test */
     public function home_page_is_showing_products()
     {
-        $product = factory('App\Product')->create();
-        $this->get('/')->assertSee($product->name);
+        $this->get('/')->assertSee($this->product1->name);
     }
 
     /** @test */
     public function product_page_is_showing_a_single_product()
     {
-        $category1 = factory('App\Category')->create();
-        $category2 = factory('App\Category')->create();
-        $category3 = factory('App\Category')->create();
-
-        $product = factory('App\Product')->create([
-            'name' => 'testproduct'
-        ]);
-        $category1->products()->attach($product);
-        $category2->products()->attach($product);
-
-        $this->get('/' . $category1->name . '/' . $product->name)->assertSee($product->name);
-        $this->get('/' . $category2->name . '/' . $product->name)->assertSee($product->name);
+        $this->get('/' . $this->category1->name . '/' . $this->product1->name)
+                    ->assertSee($this->product1->name)
+                    ->assertDontSee($this->product2->name)
+                    ->assertDontSee($this->product3->name);
+        $this->get('/' . $this->category2->name . '/' . $this->product2->name)
+                    ->assertSee($this->product2->name)
+                    ->assertDontSee($this->product1->name)
+                    ->assertDontSee($this->product3->name);
         $this->withExceptionHandling();
-        $this->get('/' . $category3->name . '/' . $product->name)->assertDontSee($product->name);
+        $this->get('/' . $this->category3->name . '/' . $this->product2->name)
+                    ->assertDontSee($this->product1->name)
+                    ->assertDontSee($this->product2->name)
+                    ->assertDontSee($this->product3->name);
     }
 
     /** @test */
     public function category_pages_show_only_products_in_the_category()
     {
-        $category1 = factory('App\Category')->create();
-        $category2 = factory('App\Category')->create();
-
-        $product1 = factory('App\Product')->create([
-        	'name' => 'product1',
-        ]);
-        $category1->products()->attach($product1);
-        $category2->products()->attach($product1);
-
-        $product2 = factory('App\Product')->create([
-        	'name' => 'product2',
-        ]);
-        $category1->products()->attach($product2);
-
-        $product3 = factory('App\Product')->create([
-        	'name' => 'product3',
-        ]);
-
-        $this->get('/' . $category1->name)
+        $this->get('/' . $this->category1->name)
         			->assertSee('product1')
         			->assertSee('product2')
         			->assertDontSee('product3');
 
-        $this->get('/' . $category2->name)
-        			->assertSee('product1')
-        			->assertDontSee('product2')
+        $this->get('/' . $this->category2->name)
+        			->assertSee('product2')
+        			->assertDontSee('product1')
         			->assertDontSee('product3');
+    }
 
+    /** @test */
+    public function products_can_be_viewed_with_category_filter()
+    {
+        $searchCategories = $this->category1->id . ',' . $this->category2->id;
+        $this->get("/search?categories=$searchCategories")
+                    ->assertSee('product1')
+                    ->assertSee('product2')
+                    ->assertDontSee('product3');
     }
 
 }

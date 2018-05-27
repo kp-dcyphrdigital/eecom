@@ -12,5 +12,6 @@
 */
 
 Route::get('/', 'ProductController@index');
+Route::get('/search', 'ProductController@search');
 Route::get('/{category}', 'ProductController@index');
 Route::get('/{category}/{product}', 'ProductController@show')->middleware('productdisplayable');

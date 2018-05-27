@@ -11,15 +11,20 @@ class ProductController extends Controller
 	public function index(Category $category, Product $products)
 	{
 		if ( $category->id ) {
-			$products = $category->products;
+			$products = $category->products();
 		}
-		$products = $products->all();
+		$products = $products->get();
 		return view( 'welcome', compact('products') );
 	}
 
 	public function show(Category $category, Product $product)
 	{
 		return view( 'show', compact('product') );		
+	}
+
+	public function search(Request $request, Product $products)
+	{
+		return $products->byCategory( $request->categories );
 	}
 
 }
