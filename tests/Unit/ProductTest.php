@@ -32,7 +32,9 @@ class ProductTest extends TestCase
         ]);
 
         $categories = $category1->id . ',' . $category2->id;
-        $products = (new Product)->byCategory($categories)->toJson();
+        $products = (new Product)->byCategory($categories)
+                        ->get()
+                        ->toJson();
 
         $this->assertContains('product1', $products);
         $this->assertContains('product2', $products);

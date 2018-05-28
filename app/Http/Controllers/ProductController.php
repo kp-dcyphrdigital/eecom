@@ -24,7 +24,8 @@ class ProductController extends Controller
 
 	public function search(Request $request, Product $products)
 	{
-		return $products->byCategory( $request->categories );
+		$products = $products->byCategory( $request->categories )->get();
+		return view( 'welcome', compact('products') );
 	}
 
 }

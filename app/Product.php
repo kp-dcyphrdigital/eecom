@@ -23,7 +23,7 @@ class Product extends Model
     	$categories = explode(',', $categories);
 		return $this->whereHas('categories', function ($query) use ($categories) {
 		    $query->whereIn('id', $categories);
-		})->get();
+		});
     }
 
 	/**
