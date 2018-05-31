@@ -14,18 +14,18 @@ class ProductController extends Controller
 			$products = $category->products();
 		}
 		$products = $products->get();
-		return view( 'welcome', compact('products') );
+		return view( 'customer.index', compact('products') );
 	}
 
 	public function show(Category $category, Product $product)
 	{
-		return view( 'show', compact('product') );		
+		return view( 'customer.show', compact('product') );		
 	}
 
 	public function search(Request $request, Product $products)
 	{
 		$products = $products->byCategory( $request->categories )->get();
-		return view( 'welcome', compact('products') );
+		return view( 'customer.index', compact('products') );
 	}
 
 }

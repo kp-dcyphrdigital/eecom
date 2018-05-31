@@ -15,9 +15,22 @@ class ExampleTest extends TestCase
      *
      * @return void
      */
+
+    public function setUp()
+    {
+        parent::setUp();
+        app()->bind(ABC::class, function () {
+            return Mockery::mock(ABC::class, function ($m) {
+                $m->shouldReceive('calc')->andReturn(4);
+            });
+        });
+    }
+
     public function testBasicTest()
     {
-        $this->assertTrue(true);
+        $abc = app()->make(ABC::class);
+        $i = $abc->calc();
+        $this->assertEquals(4, $i);
     }
 
 }
