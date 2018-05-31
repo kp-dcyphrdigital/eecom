@@ -20,13 +20,13 @@ class ViewProductsTests extends TestCase
         $this->category2 = factory('App\Category')->create();
         $this->category3 = factory('App\Category')->create();
         $this->product1 = factory('App\Product')->create([
-            'name' => 'product1'
+            'name' => 'randomtestproduct1'
         ]);
         $this->product2 = factory('App\Product')->create([
-            'name' => 'product2'
+            'name' => 'randomtestproduct2'
         ]);
         $this->product3 = factory('App\Product')->create([
-            'name' => 'product3'
+            'name' => 'randomtestproduct3'
         ]);
         $this->category1->products()->attach($this->product1);
         $this->category1->products()->attach($this->product2);
@@ -62,14 +62,14 @@ class ViewProductsTests extends TestCase
     public function category_pages_show_only_products_in_the_category()
     {
         $this->get('/' . $this->category1->name)
-        			->assertSee('product1')
-        			->assertSee('product2')
-        			->assertDontSee('product3');
+        			->assertSee('randomtestproduct1')
+        			->assertSee('randomtestproduct2')
+        			->assertDontSee('randomtestproduct3');
 
         $this->get('/' . $this->category2->name)
-        			->assertSee('product2')
-        			->assertDontSee('product1')
-        			->assertDontSee('product3');
+        			->assertSee('randomtestproduct2')
+        			->assertDontSee('randomtestproduct1')
+        			->assertDontSee('randomtestproduct3');
     }
 
     /** @test */
@@ -77,9 +77,9 @@ class ViewProductsTests extends TestCase
     {
         $searchCategories = $this->category1->id . ',' . $this->category2->id;
         $this->get("/search?categories=$searchCategories")
-                    ->assertSee('product1')
-                    ->assertSee('product2')
-                    ->assertDontSee('product3');
+                    ->assertSee('randomtestproduct1')
+                    ->assertSee('randomtestproduct2')
+                    ->assertDontSee('randomtestproduct3');
     }
 
 }

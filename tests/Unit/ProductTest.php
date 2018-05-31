@@ -18,17 +18,17 @@ class ProductTest extends TestCase
         $category2 = factory('App\Category')->create();
 
         $product1 = factory('App\Product')->create([
-        	'name' => 'product1',
+        	'name' => 'randomtestproduct1',
         ]);
         $category1->products()->attach($product1);
 
         $product2 = factory('App\Product')->create([
-        	'name' => 'product2',
+        	'name' => 'randomtestproduct2',
         ]);
         $category2->products()->attach($product2);
 
         $product3 = factory('App\Product')->create([
-        	'name' => 'product3',
+        	'name' => 'randomtestproduct3',
         ]);
 
         $categories = $category1->id . ',' . $category2->id;
@@ -36,8 +36,8 @@ class ProductTest extends TestCase
                         ->get()
                         ->toJson();
 
-        $this->assertContains('product1', $products);
-        $this->assertContains('product2', $products);
-        $this->assertNotContains('product3', $products);
+        $this->assertContains('randomtestproduct1', $products);
+        $this->assertContains('randomtestproduct2', $products);
+        $this->assertNotContains('randomtestproduct3', $products);
     }
 }
