@@ -99,12 +99,12 @@
 		</footer>
 	</section>
 <!-- /Footer -->
-    <link href="css/fontawesome-all.min.css" rel="stylesheet"/>
-    <script src="js/common.js"></script>
+    <link href="/css/fontawesome-all.min.css" rel="stylesheet"/>
+    <script src="/js/common.js"></script>
 	<!-- Homepage -->
-	<script src="js/owl.carousel.min.js"></script>
+	<script src="/js/owl.carousel.min.js"></script>
 	<!-- Details -->
-	<script src="js/pdp-js.js"></script>
+	<script src="/js/pdp-js.js"></script>
     <script>
     	$(document).ready(function() {
 			$('#pdp-zoom--image').lightSlider({
@@ -182,7 +182,7 @@
 		});
 	</script>
 	<!-- Listing Page -->
-	<script src="js/nouislider.js"></script>
+	<script src="/js/nouislider.js"></script>
 	 <script>
 	 	$(document).ready(function() {
 		 	$(".product-container .product-wrapper .img img").mouseover(function () {

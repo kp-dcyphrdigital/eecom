@@ -1,9 +1,37 @@
 @extends('customer.layouts.master')
 
 @section('content')
+<style>
 
+#payment-container {
+    width:500px;
+    margin: 10px auto;
+}
+#card-number, #cvv, #expiration-date {
+  border: 1px solid #333;
+  -webkit-transition: border-color 160ms;
+  transition: border-color 160ms;
+  height: 30px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+#card-number.braintree-hosted-fields-focused {
+  border-color: #777;
+}
+
+#card-number.braintree-hosted-fields-invalid {
+  border-color: tomato;
+}
+
+#card-number.braintree-hosted-fields-valid {
+  border-color: limegreen;
+}
+</style>
 <section class="product-container">
 
+    <div id="payment-container">
+    <h2>Total $222</h2>
     <form action="/payment" id="my-sample-form" method="post">
       @csrf
       <input type="hidden" name="payment_method_nonce" value="">
@@ -18,7 +46,7 @@
 
       <input type="submit" value="Pay" disabled />
     </form>
-
+    </div>
     <script src="https://js.braintreegateway.com/web/3.34.0/js/client.min.js"></script>
     <script src="https://js.braintreegateway.com/web/3.34.0/js/hosted-fields.min.js"></script>
     <script>

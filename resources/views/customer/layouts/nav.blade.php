@@ -40,7 +40,7 @@
                   <a href="#" class="search-header--popup"><i class="fas fa-search"></i></a>
                 </li>
                 <li>
-                  <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                  <a href="/payment"><i class="fas fa-shopping-cart"></i></a>
                 </li>
               </ul>
             </div>
@@ -88,9 +88,9 @@
             <a href="#">Hockey Skates</a>
             <ul class="cd-secondary-nav is-hidden">
               <li class="go-back"><a href="#">Main Menu</a></li>
-              <li class="see-all"><a href="#">Shop All Skates</a></li>
+              <li class="see-all"><a href="/ipsa">Shop All Skates</a></li>
               <li class="has-children">
-                <a href="#">Ice Hockey Skates</a>
+                <a href="/est">Ice Hockey Skates</a>
                 <ul class="is-hidden">
                   <li class="go-back"><a href="#">Back</a></li>
                   <li class="see-all"><a href="#">All Ice Skates</a></li>

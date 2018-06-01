@@ -11,5 +11,5 @@ Route::post('/payment', 'PaymentController@store');
 
 Route::get('/categories', 'CategoryController@index');
 
-Route::get('/{category}', 'ProductController@index');
+Route::get('/{category}', 'ProductController@list');
 Route::get('/{category}/{product}', 'ProductController@show')->middleware('productdisplayable');
