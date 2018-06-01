@@ -1,1 +1,1 @@
-[![Build Status](https://travis-ci.com/kp-syginteractive/eecom.svg?branch=master)](https://travis-ci.com/kp-syginteractive/eecom)
+
