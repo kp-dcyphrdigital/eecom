@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Braintree\Gateway as PaymentGateway;
 use Illuminate\Http\Request;
+use Braintree\TransactionSearch;
+use Braintree\Gateway as PaymentGateway;
+
 
 class PaymentController extends Controller
 {
@@ -15,8 +17,9 @@ class PaymentController extends Controller
 
     public function store(PaymentGateway $paymentgateway)
     {
+		$amount = '222.00';
 		$result = $paymentgateway->transaction()->sale([
-		  'amount' => '222.00',
+		  'amount' => $amount,
 		  'paymentMethodNonce' => request('payment_method_nonce'),
 		  'options' => [
 		    'submitForSettlement' => True
@@ -24,10 +27,12 @@ class PaymentController extends Controller
 		]);
 
 		if ($result->success) {
-			return view( 'customer.orderconfirmed' );
-		} else {
-			return "ERROR!";
+			$transaction = $paymentgateway->transaction()->find($result->transaction->id);
+			if ( $transaction->amount === $amount ) {
+				return view( 'customer.orderconfirmed' );
+			}
 		}
+		return "ERROR!";
     }
 
 }
