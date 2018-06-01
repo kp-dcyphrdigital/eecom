@@ -17,7 +17,7 @@ class Processor
 
 	public function charge()
 	{
-		$amount = '231.00';
+		$amount = '300.00';
 		$result = $this->paymentgateway->transaction()->sale([
 		  'amount' => $amount,
 		  'paymentMethodNonce' => request('payment_method_nonce'),
