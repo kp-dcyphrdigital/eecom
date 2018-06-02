@@ -26,13 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-         $this->app->bind(Processor::class, function () {
-            return new Processor(new PaymentGateway([
+         $this->app->singleton(Processor::class, function () {
+            $paymentgateway = new PaymentGateway([
               'environment' => config('services.braintree.environment'),
               'merchantId' => config('services.braintree.merchantId'),
               'publicKey' => config('services.braintree.publicKey'),
               'privateKey' => config('services.braintree.privateKey')
-            ]));
+            ]);
+            return new Processor($paymentgateway);
         });
     }
 }
