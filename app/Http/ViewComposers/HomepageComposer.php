@@ -4,6 +4,7 @@ namespace App\Http\ViewComposers;
 
 use App\Banner;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Cache;
 
 class HomepageComposer
 {
@@ -33,6 +34,9 @@ class HomepageComposer
      */
     public function compose(View $view)
     {
-        $view->with('banners', $this->banners->all() );
+        $banners = Cache::remember('banners', 1440, function() { 
+            return $this->banners->all();
+        });     
+        $view->with(compact('banners'));
     }
 }
