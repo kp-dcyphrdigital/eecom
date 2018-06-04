@@ -1,27 +1,8 @@
-
 <div id="homepage-carousel" class="owl-carousel owl-theme">
+@foreach($banners as $banner)
   <div class="item">
-    <img class="hidden-xs" src="http://syginteractive.com/web/skaters/images/home-banner/Vapor_Skate_Matthews_1500x500_TW_BG.jpg" alt="">
-    <img class="visible-xs" src="http://syginteractive.com/web/skaters/images/home-banner/mob.png" alt="">
+    <img class="hidden-xs" src="{{ asset($banner->desktopUrl) }}" alt="{{ $banner->altText }}">
+    <img class="visible-xs" src="{{ asset($banner->mobileUrl) }}" alt="{{ $banner->altText }}">
   </div>
-  <div class="item">
-    <img class="hidden-xs" src="http://syginteractive.com/web/skaters/images/home-banner/Vapor_Skate_Matthews_1500x500_TW_BG.jpg" alt="">
-    <img class="visible-xs" src="http://syginteractive.com/web/skaters/images/home-banner/mob.png" alt="">
-  </div>
-  <div class="item">
-    <img class="hidden-xs" src="http://syginteractive.com/web/skaters/images/home-banner/Vapor_Skate_Matthews_1500x500_TW_BG.jpg" alt="">
-    <img class="visible-xs" src="http://syginteractive.com/web/skaters/images/home-banner/mob.png" alt="">
-  </div>
-  <div class="item">
-    <img class="hidden-xs" src="http://syginteractive.com/web/skaters/images/home-banner/Vapor_Skate_Matthews_1500x500_TW_BG.jpg" alt="">
-    <img class="visible-xs" src="http://syginteractive.com/web/skaters/images/home-banner/mob.png" alt="">
-  </div>
-  <div class="item">
-    <img class="hidden-xs" src="http://syginteractive.com/web/skaters/images/home-banner/Vapor_Skate_Matthews_1500x500_TW_BG.jpg" alt="">
-    <img class="visible-xs" src="http://syginteractive.com/web/skaters/images/home-banner/mob.png" alt="">
-  </div>
-  <div class="item">
-    <img class="hidden-xs" src="http://syginteractive.com/web/skaters/images/home-banner/Vapor_Skate_Matthews_1500x500_TW_BG.jpg" alt="">
-    <img class="visible-xs" src="http://syginteractive.com/web/skaters/images/home-banner/mob.png" alt="">
-  </div>
+  @endforeach
 </div>
