@@ -18,6 +18,7 @@ class CategoriesTableSeeder extends Seeder
 	        'image' => 'products/skate1.jpg',
 		]);
 		factory('App\Category')->create([
+			'parent_id' => 1,
 	        'name' => 'Ice Hockey Skates',
 	        'slug' => 'ice-hockey-skates',
 	        'depth' => 2,
@@ -30,6 +31,7 @@ class CategoriesTableSeeder extends Seeder
 	        'image' => 'products/stick1.jpg',
 		]);
 		factory('App\Category')->create([
+			'parent_id' => 3,
 	        'name' => 'Composite Hockey Sticks',
 	        'slug' => 'composite-hockey-sticks',
 	        'depth' => 2,
@@ -42,11 +44,17 @@ class CategoriesTableSeeder extends Seeder
 	        'image' => 'products/glove1.jpg',
 		]);
 		factory('App\Category')->create([
+			'parent_id' => 5,
 	        'name' => 'Hockey Gloves',
 	        'slug' => 'hockey-gloves',
 	        'depth' => 2,
 	        'image' => 'products/glove2.jpg',
-		]); 
-		factory('App\Category', 10)->create();
+		]);
+		for ($i=0; $i < 10; $i++) {
+			factory('App\Category')->create([
+				'parent_id' => 1,
+				'image' => 'products/skate' . rand(1,2) . '.jpg',
+			]);
+		}
     }
 }

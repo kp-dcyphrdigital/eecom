@@ -20,6 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->unsignedTinyInteger('depth');
             $table->string('image');
             $table->timestamps();
+            $table->nestedSet();
         });
     }
 
