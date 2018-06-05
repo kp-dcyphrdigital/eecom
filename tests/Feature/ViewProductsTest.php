@@ -17,11 +17,20 @@ class ViewProductsTests extends TestCase
     {
         parent::setUp();
         $this->category1 = factory('App\Category')->create();
-        $this->category2 = factory('App\Category')->create();
+        $this->category2 = factory('App\Category')->create([
+            'parent_id' => $this->category1->id,
+            'depth' => 2,
+        ]);
         $this->category3 = factory('App\Category')->create();
-        $this->category4 = factory('App\Category')->create();
+        $this->category4 = factory('App\Category')->create([
+            'parent_id' => $this->category3->id,
+            'depth' => 2,
+        ]);
         $this->category5 = factory('App\Category')->create();
-        $this->category6 = factory('App\Category')->create();
+        $this->category6 = factory('App\Category')->create([
+            'parent_id' => $this->category5->id,
+            'depth' => 2,
+        ]);
         $this->product1 = factory('App\Product')->create([
             'name' => 'randomtestproduct1',
             'featured' => 1,
@@ -66,6 +75,7 @@ class ViewProductsTests extends TestCase
     /** @test */
     public function category_pages_show_only_products_in_the_category()
     {
+
         $this->get('/' . $this->category2->slug)
         			->assertSee('randomtestproduct1')
         			->assertSee('randomtestproduct2')

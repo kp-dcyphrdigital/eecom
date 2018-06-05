@@ -8,7 +8,7 @@ $factory->define(App\Category::class, function (Faker $faker) {
 		'slug' => 	$faker->randomLetter . 
 					$faker->randomLetter .
 					$faker->randomLetter,
-        'depth' => rand(0, 3),
+        'depth' => 1,
 		'image' => '/bad.jpg',
     ];
 });

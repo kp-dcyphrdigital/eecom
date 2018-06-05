@@ -23,10 +23,11 @@ class ProductController extends Controller
 
 	public function list(Category $category, Product $products)
 	{
-		$products = $category->products->sortBy('price')->values();
 		if ($category->depth < 2) {
-			return view( 'customer.categorytop', compact('products') );
+			$subCategories = $category->descendants()->get();			
+			return view( 'customer.categorytop', compact('category', 'subCategories') );
 		} else {
+			$products = $category->products->sortBy('price')->values();
 			return view( 'customer.categorylower', compact('category', 'products') );
 		}
 	}
