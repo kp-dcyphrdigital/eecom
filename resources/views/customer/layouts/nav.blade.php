@@ -88,9 +88,9 @@
             <a href="#">Hockey Skates</a>
             <ul class="cd-secondary-nav is-hidden">
               <li class="go-back"><a href="#">Main Menu</a></li>
-              <li class="see-all"><a href="/ipsa">Shop All Skates</a></li>
+              <li class="see-all"><a href="/hockey-skates">Shop All Skates</a></li>
               <li class="has-children">
-                <a href="/est">Ice Hockey Skates</a>
+                <a href="/ice-hockey-skates">Ice Hockey Skates</a>
                 <ul class="is-hidden">
                   <li class="go-back"><a href="#">Back</a></li>
                   <li class="see-all"><a href="#">All Ice Skates</a></li>
