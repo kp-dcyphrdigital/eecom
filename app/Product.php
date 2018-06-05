@@ -7,6 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+
+    /**
+     * Get the product's price in dollars
+     *
+     * @param  integer  $value
+     * @return float
+     */
+    public function getPriceAttribute($value)
+    {
+        return $value / 100;
+    }
+
+    /**
+     * Get the product's RRP in dollars
+     *
+     * @param  integer  $value
+     * @return float
+     */
+    public function getRrpAttribute($value)
+    {
+        return $value / 100;
+    }
+
     /**
      * A product can be in many categories
      */
@@ -33,7 +56,7 @@ class Product extends Model
 	 */
 	public function getRouteKeyName()
 	{
-	    return 'name';
+	    return 'slug';
 	}  
 
 }
