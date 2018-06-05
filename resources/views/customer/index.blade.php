@@ -33,7 +33,7 @@
 						@if($product->rating > 0)
 						<div class="star-rating">
 							@for($i=1; $i<6; $i++)
-								@if($i < $product->rating)
+								@if($i <= $product->rating)
 									<span class="fa fa-star checked"></span>
 								@else
 									<span class="fa fa-star"></span>

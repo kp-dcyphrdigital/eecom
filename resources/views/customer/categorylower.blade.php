@@ -103,307 +103,52 @@
 			<div class="product-container">
 				<div class="info-wrapper">
 					<div class="row">
+
+						@foreach ($products as $product)
 						<div class="col-md-3 col-sm-6">
-							<a href="/ipsa/deleniti">
+							<a href="/{{ $category->slug }}/{{ $product->slug }}">
 								<div class="product-wrapper">
 									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="new">new</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate Baur Supreme 1S Ice Baur Supreme 1S Ice</p>
-										<div class="star-rating">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-										</div>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="new">new</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
+										<img src="{{ asset('/images/' . $product->image) }}" data-src="{{ asset('/images/' . $product->image) }}" data-hover="{{ asset('/images/' . $product->image) }}" alt="">
+										
+										@if($product->badge === 'New')
+										<span class="new">NEW</span>
+										@elseif($product->price < $product->rrp)
 										<span class="sale">Sale!</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<div class="star-rating">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-										</div>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="new">new</span>
+										@endif
+
+										@if($product->stock === 0)
 										<div class="out">OUT OF STOCK</div>
+										@endif
+
 									</div>
 									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="sale">Sale!</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
+										<p class="name">{{ $product->name }}</p>
+
+										@if($product->rating > 0)
 										<div class="star-rating">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star "></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
+											@for($i=1; $i<6; $i++)
+												@if($i <= $product->rating)
+													<span class="fa fa-star checked"></span>
+												@else
+													<span class="fa fa-star"></span>
+												@endif
+											@endfor
 										</div>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
+										@endif
+
+										<p class="price">&dollar;{{ $product->price }}
+											@if($product->price < $product->rrp)
+											<del>&dollar;{{ $product->rrp }}</del>
+											@endif
+										</p>
+	
 									</div>
 								</div>
 							</a>
 						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="new">new</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate Baur Supreme 1S Ice</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="new">new</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="sale">Sale!</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<div class="star-rating">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-										</div>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="new">new</span>
-										<div class="out">OUT OF STOCK</div>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="sale">Sale!</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<div class="star-rating">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star "></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="new">new</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="new">new</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="sale">Sale!</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<div class="star-rating">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-										</div>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="new">new</span>
-										<div class="out">OUT OF STOCK</div>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
-						<div class="col-md-3 col-sm-6">
-							<a href="#">
-								<div class="product-wrapper">
-									<div class="img">
-										<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-src="http://syginteractive.com/web/skaters/images/products/product2.jpg" data-hover="http://syginteractive.com/web/skaters/images/products/product3.jpg" alt="">
-										<span class="sale">Sale!</span>
-									</div>
-									<div class="info">
-										<p class="name">Baur Supreme 1S Ice Hockey Skate</p>
-										<div class="star-rating">
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star checked"></span>
-											<span class="fa fa-star "></span>
-											<span class="fa fa-star"></span>
-											<span class="fa fa-star"></span>
-										</div>
-										<p class="price">&dollar;800 <del>&dollar;1,003</del></p>
-									</div>
-								</div>
-							</a>
-						</div>
+						@endforeach
+
 					</div>
 			    </div>
 		    </div>
