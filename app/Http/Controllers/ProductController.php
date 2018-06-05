@@ -18,17 +18,16 @@ class ProductController extends Controller
             	$query->where('featured', 1);
             }])->get();
         });
-        // return $products;
 		return view( 'customer.index', compact('products') );
 	}
 
 	public function list(Category $category, Product $products)
 	{
-		$products = $category->products()->get();
+		$products = $category->products->sortBy('price')->values();
 		if ($category->depth < 2) {
 			return view( 'customer.categorytop', compact('products') );
 		} else {
-			return view( 'customer.categorylower', compact('products') );
+			return view( 'customer.categorylower', compact('category', 'products') );
 		}
 	}
 
