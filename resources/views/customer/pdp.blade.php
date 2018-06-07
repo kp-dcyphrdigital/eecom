@@ -98,7 +98,7 @@
 					</ul>
 				</div>
 				<div class="row">
-					<div class="col-sm-4">
+					<div class="col-sm-8">
 						<div class="select-wrapper">
 							<label for="size">Size:</label>
 							<select>
@@ -110,6 +110,8 @@
 							</select>
 						</div>
 					</div>
+				</div>
+				<div class="row">
 					<div class="col-xs-8">
 						<div class="select-wrapper">
 							<label for="size">Hand:</label>
@@ -120,7 +122,9 @@
 							</select>
 						</div>
 					</div>
-					<div class="col-xs-6">
+				</div>
+				<div class="row">
+					<div class="col-xs-8">
 						<div class="select-wrapper">
 							<label for="size">Width:</label>
 							<select>
