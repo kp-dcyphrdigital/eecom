@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Banners extends Migration
+class CreateCategoryProductTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class Banners extends Migration
      */
     public function up()
     {
-        Schema::create('banners', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->text('desktopUrl');
-            $table->text('mobileUrl');
-            $table->text('altText');
-            $table->timestamps();
+        Schema::create('category_product', function (Blueprint $table) {
+            $table->integer('category_id');
+            $table->integer('product_id');
+            $table->primary(['category_id', 'product_id']);
         });
     }
 
@@ -30,6 +27,6 @@ class Banners extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banners');
+        Schema::dropIfExists('category_product');
     }
 }

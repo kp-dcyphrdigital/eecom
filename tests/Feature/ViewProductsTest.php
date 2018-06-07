@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class ViewProductsTests extends TestCase
@@ -51,7 +50,8 @@ class ViewProductsTests extends TestCase
     /** @test */
     public function home_page_is_showing_products()
     {
-        $this->get('/')->assertSee($this->product1->name);
+        $this->get('/')
+                ->assertSee($this->product1->name);
     }
 
     /** @test */

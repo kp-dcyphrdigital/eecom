@@ -54,9 +54,10 @@
 						<div class="col-sm-6">
 							<div class="signup-container">
 								<p>Email Address: </p>
-								<form action="#">
-									<input class="input" type="text" name="" value="" id="email" placeholder="Your Email Address">
-								    <button class="btn">sign up</button>
+								<form method="post" action="/subscribers/new">
+									@csrf
+									<input class="input" type="text" name="email" id="email" placeholder="Your Email Address">
+								    <button type="submit" class="btn">sign up</button>
 								</form>
 							</div>
 						</div>
