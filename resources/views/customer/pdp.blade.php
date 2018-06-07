@@ -26,7 +26,7 @@
 	<div class="row">
 		<div class="col-sm-7">
 			<div class="plp-heading">
-				<h1>Bauer Vapor X 600 Lite Grip Hockey Stick</h1>
+				<h1>GLOVE HKY - VAPOR X600 BKW 14</h1>
 			    <span>[Senior]</span>
 			</div>
 			<div class="pdp-container--image">
@@ -57,7 +57,8 @@
 		<div class="col-sm-5">
 			<div class="pdp-container--info">
 				<div class="price">
-					$59.99
+					&dollar;89.10
+					<del>&dollar;99.00</del>
 				</div>
 				<div class="info">
 					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
@@ -85,16 +86,6 @@
 								<img src="http://syginteractive.com/web/skaters/images/products/thumbs/thumb2.jpg" width="60" height="60" alt="">
 							</a>
 						</li>
-						<li>
-							<a href="#">
-								<img src="http://syginteractive.com/web/skaters/images/products/thumbs/thumb3.jpg" width="60" height="60" alt="">
-							</a>
-						</li>
-						<li>
-							<a href="#">
-								<img src="http://syginteractive.com/web/skaters/images/products/thumbs/thumb4.jpg" width="60" height="60" alt="">
-							</a>
-						</li>
 					</ul>
 				</div>
 				<div class="row">
@@ -103,41 +94,15 @@
 							<label for="size">Size:</label>
 							<select>
 								<option value="">--</option>
-								<option value="38">38"</option>
-								<option value="38">32"</option>
-								<option value="38">42"</option>
-								<option value="38">40"</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-8">
-						<div class="select-wrapper">
-							<label for="size">Hand:</label>
-							<select>
-								<option value="">--</option>
-								<option value="38">Left</option>
-								<option value="38">Right</option>
-							</select>
-						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-xs-8">
-						<div class="select-wrapper">
-							<label for="size">Width:</label>
-							<select>
-								<option value="">--</option>
-								<option value="38">Left</option>
-								<option value="38">Right</option>
+								<option value="14">14"</option>
+								<option value="15">15"</option>
 							</select>
 						</div>
 					</div>
 				</div>
 				<div class="quantity">
 					<label for="quantity">Quantity:</label>
-					<input type="text" id="quantity">
+					<input type="text" id="quantity" value="1">
 				</div>
 				<div class="add-to-cart">
 					<button class="primary-btn">add to cart</button>
