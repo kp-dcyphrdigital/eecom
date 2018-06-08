@@ -17,6 +17,9 @@ class ComposerServiceProvider extends ServiceProvider
          View::composer(
             'customer.index', 'App\Http\ViewComposers\HomepageComposer'
         );
+        View::composer(
+            '*', 'App\Http\ViewComposers\NavComposer'
+        );
     }
 
     /**
