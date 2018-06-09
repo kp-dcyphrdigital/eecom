@@ -1,8 +1,8 @@
 <?php
 
-Route::get('/', 'ProductController@index');
+Route::get('/', 'HomeController@index');
 
-Route::get('/search', 'ProductController@search');
+Route::get('/search', 'SearchController@index');
 
 Route::post('/cart', 'CartController@store');
 
@@ -13,5 +13,5 @@ Route::post('/subscribers/new', 'SubscriberController@store');
 
 Route::get('/categories', 'CategoryController@index');
 
-Route::get('/{category}', 'ProductController@list');
+Route::get('/{category}', 'ProductController@index');
 Route::get('/{category}/{product}', 'ProductController@show')->middleware('productdisplayable');

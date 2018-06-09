@@ -5,29 +5,25 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\Category;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
-	public function index()
-	{
-		$products = Cache::remember('products', 60, function() { 
-        	// [2,4,6] below denotes homepage featured product categories 
-			// which presumably will come from the DB eventually
-            return Category::whereIn('id', [2,4,6])->with(['products'=> function($query) {
-            	$query->where('featured', 1);
-            }])->get();
-        });
-		return view( 'customer.index', compact('products') );
-	}
 
-	public function list(Category $category, Product $products)
+	public function index(Category $category, Product $product)
 	{
 		if ($category->depth < 2) {
 			$subCategories = $category->descendants()->get();			
 			return view( 'customer.categorytop', compact('category', 'subCategories') );
 		} else {
-			$products = $category->products->sortBy('price')->values();
+			$categories = $category->descendants()->pluck('id');
+			$categories[] = $category->getKey();
+			$products = $category->whereIn('id', $categories)
+									->with('products')
+									->get()
+									->map( function($category) {
+										return $category->products;
+									})->flatten()
+									->unique('id');
 			return view( 'customer.categorylower', compact('category', 'products') );
 		}
 	}
@@ -35,16 +31,6 @@ class ProductController extends Controller
 	public function show(Category $category, Product $product)
 	{
 		return view( 'customer.pdp', compact('product') );		
-	}
-
-	public function search(Request $request)
-	{
-		// $products = $products->byCategory( $request->categories )->get();
-		$products = Category::whereIn( 'id', explode(',', $request->categories) )
-						->with('products')
-						->get();
-		// return $products;
-		return view( 'customer.index', compact('products') );
 	}
 
 }
