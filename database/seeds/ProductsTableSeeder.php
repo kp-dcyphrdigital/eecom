@@ -29,9 +29,11 @@ class ProductsTableSeeder extends Seeder
         factory('App\Product')->create([
             'name' => 'Bauer S17 Supreme S170 Glove New',
             'image' => 'products/glove1.jpg',
+            'rrp' => 12900,
+            'price' => 6000,
             'rating' => 5,
             'featured' => 1,
-        ])->categories()->attach([9]);
+        ])->categories()->attach([9,15]);
 
 		for ($i=0; $i < 10; $i++) { 
             factory('App\Product')->create([

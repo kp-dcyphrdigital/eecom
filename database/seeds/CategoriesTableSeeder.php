@@ -62,7 +62,7 @@ class CategoriesTableSeeder extends Seeder
 		]);
 		factory('App\Category')->create([
 	        'name' => 'Clearance',
-	        'slug' => 'Clearance',
+	        'slug' => 'clearance',
 	        'depth' => 1,
 	        'image' => 'products/glove1.jpg',
 		]);
