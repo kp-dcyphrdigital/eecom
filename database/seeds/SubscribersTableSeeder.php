@@ -11,6 +11,6 @@ class SubscribersTableSeeder extends Seeder
      */
     public function run()
     {
-		factory('App\Subscriber', 100)->create();
+		factory('App\Models\Subscriber', 100)->create();
 	}
 }

@@ -1,7 +1,6 @@
 @extends('customer.layouts.master')
 
 @section('content')
-    <!-- <p>{{ $product->id }} - {{ $product->name }}</p> -->
 
 <div class="breadcrumbs-wrapper">
 	<div class="container">
@@ -26,7 +25,7 @@
 	<div class="row">
 		<div class="col-sm-7">
 			<div class="plp-heading">
-				<h1>GLOVE HKY - VAPOR X600 BKW 14</h1>
+				<h1>{{ $product->name }}</h1>
 			    <span>[Senior]</span>
 			</div>
 			<div class="pdp-container--image">
@@ -57,8 +56,8 @@
 		<div class="col-sm-5">
 			<div class="pdp-container--info">
 				<div class="price">
-					&dollar;89.10
-					<del>&dollar;99.00</del>
+					&dollar;{{ $product->price }}
+					<del>&dollar;{{ $product->rrp }}</del>
 				</div>
 				<div class="info">
 					Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
@@ -105,7 +104,7 @@
 					<input type="text" id="quantity" value="1">
 				</div>
 				<div class="add-to-cart">
-					<button class="primary-btn">add to cart</button>
+					<button class="primary-btn" value="{{ $product->slug }}">add to cart</button>
 				</div>
 				<div class="extra-details">
 					<p class="offer">FREE SHIPPING ON ORDERS OVER $50 AUSTRALIA WIDE</p>

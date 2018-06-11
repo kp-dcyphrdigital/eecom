@@ -128,9 +128,23 @@ $(document).ready(function() {
     pagination : false,
     rewindNav : false
   });
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(".add-to-cart > button").click(function(){
+        product = $(".add-to-cart > button").val();
+        $.ajax( {
+            url: "/cart", 
+            method: "post", 
+            data: { products: product },
+            success: function(result) {
+                $(".fa-shopping-cart").text(result);
+            }
+        });
+    });
+
 });
-
-
-// Cart
-
-

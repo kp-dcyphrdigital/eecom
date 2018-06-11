@@ -11,13 +11,13 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-		factory('App\Category')->create([
+		factory('App\Models\Category')->create([
 	        'name' => 'Hockey Skates',
 	        'slug' => 'hockey-skates',
 	        'depth' => 1,
 	        'image' => 'products/skate1.jpg',
 		]);
-		factory('App\Category')->create([
+		factory('App\Models\Category')->create([
 			'parent_id' => 1,
 	        'name' => 'Ice Hockey Skates',
 	        'slug' => 'ice-hockey-skates',
@@ -25,59 +25,66 @@ class CategoriesTableSeeder extends Seeder
 	        'image' => 'products/skate2.jpg',
 		]);
 		for ($i=0; $i < 3; $i++) {
-			factory('App\Category')->create([
+			factory('App\Models\Category')->create([
 				'parent_id' => 2,
 				'depth' => 3,
 				'image' => 'products/skate' . rand(1,2) . '.jpg',
 			]);
 		}
-		factory('App\Category')->create([
+		factory('App\Models\Category')->create([
 	        'name' => 'Hockey Sticks',
 	        'slug' => 'hockey-sticks',
 	        'depth' => 1,
 	        'image' => 'products/stick1.jpg',
 		]);
-		factory('App\Category')->create([
+		factory('App\Models\Category')->create([
 			'parent_id' => 6,
 	        'name' => 'Composite Hockey Sticks',
 	        'slug' => 'composite-hockey-sticks',
 	        'depth' => 2,
 	        'image' => 'products/stick2.jpg',
 		]); 
-		factory('App\Category')->create([
+		factory('App\Models\Category')->create([
 	        'name' => 'Protective',
 	        'slug' => 'protective',
 	        'depth' => 1,
 	        'image' => 'products/glove1.jpg',
 		]);
-		factory('App\Category')->create([
+		factory('App\Models\Category')->create([
 			'parent_id' => 8,
 	        'name' => 'Hockey Gloves',
 	        'slug' => 'hockey-gloves',
 	        'depth' => 2,
 	        'image' => 'products/glove2.jpg',
 		]);
-		factory('App\Category', 5)->create([
+		factory('App\Models\Category', 5)->create([
 	        'depth' => 1,
 		]);
-		factory('App\Category')->create([
+		factory('App\Models\Category')->create([
 	        'name' => 'Clearance',
 	        'slug' => 'clearance',
 	        'depth' => 1,
 	        'image' => 'products/glove1.jpg',
 		]);
+		factory('App\Models\Category')->create([
+	        'name' => 'Super Sale',
+	        'slug' => 'super_sale',
+			'parent_id' => 15,
+	        'depth' => 2,
+	        'image' => 'products/glove1.jpg',
+		]);
 		for ($i=0; $i < 6; $i++) {
-			factory('App\Category')->create([
+			factory('App\Models\Category')->create([
 				'parent_id' => 1,
 				'depth' => 2,
 				'image' => 'products/skate' . rand(1,2) . '.jpg',
 			]);
-			factory('App\Category')->create([
+			factory('App\Models\Category')->create([
 				'parent_id' => 6,
 				'depth' => 2,
 				'image' => 'products/stick' . rand(1,4) . '.jpg',
 			]);
-			factory('App\Category')->create([
+			factory('App\Models\Category')->create([
 				'parent_id' => 8,
 				'depth' => 2,
 				'image' => 'products/glove' . rand(1,2) . '.jpg',

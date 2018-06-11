@@ -40,7 +40,7 @@
                   <a href="#" class="search-header--popup"><i class="fas fa-search"></i></a>
                 </li>
                 <li>
-                  <a href="/payment"><i class="fas fa-shopping-cart"></i></a>
+                  <a href="/cart"><i class="fas fa-shopping-cart">{{ session('cart.count') }}</i></a>
                 </li>
               </ul>
             </div>

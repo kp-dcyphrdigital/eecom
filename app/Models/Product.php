@@ -1,8 +1,7 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use App\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
@@ -35,7 +34,7 @@ class Product extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany('App\Category');
+        return $this->belongsToMany('App\Models\Category');
     }
 
     /**

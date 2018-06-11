@@ -13,7 +13,7 @@ class CategoryTest extends TestCase
     /** @test */
     public function can_get_a_list_of_categories()
     {
-        $category = factory('App\Category')->create();
+        $category = factory('App\Models\Category')->create();
         $this->get('/categories')
         		->assertSee($category->name);
     }

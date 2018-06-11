@@ -15,30 +15,30 @@ class ViewProductsTests extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->category1 = factory('App\Category')->create();
-        $this->category2 = factory('App\Category')->create([
+        $this->category1 = factory('App\Models\Category')->create();
+        $this->category2 = factory('App\Models\Category')->create([
             'parent_id' => $this->category1->id,
             'depth' => 2,
         ]);
-        $this->category3 = factory('App\Category')->create();
-        $this->category4 = factory('App\Category')->create([
+        $this->category3 = factory('App\Models\Category')->create();
+        $this->category4 = factory('App\Models\Category')->create([
             'parent_id' => $this->category3->id,
             'depth' => 2,
         ]);
-        $this->category5 = factory('App\Category')->create();
-        $this->category6 = factory('App\Category')->create([
+        $this->category5 = factory('App\Models\Category')->create();
+        $this->category6 = factory('App\Models\Category')->create([
             'parent_id' => $this->category5->id,
             'depth' => 2,
         ]);
-        $this->product1 = factory('App\Product')->create([
+        $this->product1 = factory('App\Models\Product')->create([
             'name' => 'randomtestproduct1',
             'featured' => 1,
         ]);
-        $this->product2 = factory('App\Product')->create([
+        $this->product2 = factory('App\Models\Product')->create([
             'name' => 'randomtestproduct2',
             'featured' => 1,
         ]);
-        $this->product3 = factory('App\Product')->create([
+        $this->product3 = factory('App\Models\Product')->create([
             'name' => 'randomtestproduct3'
         ]);
         $this->category2->products()->attach($this->product1);

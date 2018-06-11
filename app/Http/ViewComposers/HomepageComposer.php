@@ -2,7 +2,7 @@
 
 namespace App\Http\ViewComposers;
 
-use App\Banner;
+use App\Models\Banner;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Cache;
 
