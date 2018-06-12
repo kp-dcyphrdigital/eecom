@@ -17,7 +17,7 @@ class Processor
 
 	public function charge($cartTotal)
 	{
-		$amount = $cartTotal;
+		$amount = number_format($cartTotal, 2);
 		$result = $this->paymentgateway->transaction()->sale([
 		  'amount' => $amount,
 		  'paymentMethodNonce' => request('payment_method_nonce'),

@@ -7,14 +7,15 @@ use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use App\Repositories\CartRepository;
 
 class CartController extends Controller
 {
 
-    public function index()
+    public function index(CartRepository $cartRepository)
     {
-        $productsWithQuantity = Cart::find( session('cart.id') )->getLineDetails();
-        $cartTotal = $productsWithQuantity->sum('subtotal');
+        $productsWithQuantity = $cartRepository->getLineDetailsById( session('cart.id') );
+        $cartTotal = $cartRepository->getCartTotalById( session('cart.id') );
         return view( 'customer.cart', compact('productsWithQuantity', 'cartTotal') );
     }
 
