@@ -12,10 +12,16 @@ use App\Repositories\CartRepository;
 class CartController extends Controller
 {
 
-    public function index(CartRepository $cartRepository)
+    protected $cartRepository;
+    public function __construct(CartRepository $cartRepository)
     {
-        $productsWithQuantity = $cartRepository->getLineDetailsById( session('cart.id') );
-        $cartTotal = $cartRepository->getCartTotalById( session('cart.id') );
+        $this->cartRepository = $cartRepository;
+    }
+
+    public function index()
+    {
+        $productsWithQuantity = $this->cartRepository->getLineDetailsById( session('cart.id') );
+        $cartTotal = $this->cartRepository->getCartTotalById( session('cart.id') );
         return view( 'customer.cart', compact('productsWithQuantity', 'cartTotal') );
     }
 
@@ -26,7 +32,7 @@ class CartController extends Controller
             'products' => [
                 'required',
                 function($attribute, $value, $fail) {
-                    if ( Product::where('slug', $value)->where('stock', '>', 0)->get()->isEmpty() ) {
+                    if ( ! Product::checkInStockBySlug($value) ) {
                         return $fail($attribute.' is invalid.');
                     }
                 },

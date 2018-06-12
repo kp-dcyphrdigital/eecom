@@ -48,6 +48,11 @@ class Product extends Model
 		});
     }
 
+    public static function checkInStockBySlug($slug)
+    {
+        return self::where('slug', $slug)->where('stock', '>', 0)->get()->isNotEmpty();
+    }
+
 	/**
 	 * Get the route key for the model.
 	 *
