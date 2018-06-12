@@ -4,6 +4,7 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/search', 'SearchController@index');
 
+Route::get('/cart', 'CartController@index');
 Route::post('/cart', 'CartController@store');
 
 Route::get('/payment', 'PaymentController@create');

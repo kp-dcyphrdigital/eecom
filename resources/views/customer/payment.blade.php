@@ -1,4 +1,4 @@
-@extends('customer.layouts.master')
+  @extends('customer.layouts.master')
 
 @section('content')
 <style>
@@ -31,7 +31,7 @@
 <section class="product-container">
 
     <div id="payment-container">
-    <h2>Total $300</h2>
+    <h2>Total {{ $cartTotal }}</h2>
     <form action="/payment" id="my-sample-form" method="post">
       @csrf
       <input type="hidden" name="payment_method_nonce" value="">

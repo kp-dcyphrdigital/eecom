@@ -12,7 +12,7 @@ class ProductController extends Controller
 	public function index(Category $category, Product $product)
 	{
 		if ($category->depth < 2) {
-			$subCategories = $category->descendants()->get();			
+			$subCategories = $category->descendants()->get();	
 			return view( 'customer.categorytop', compact('category', 'subCategories') );
 		} else {
 			$categories = $category->descendants()->pluck('id');

@@ -4,11 +4,20 @@ namespace App\Http\Controllers;
 
 use Validator;
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class CartController extends Controller
 {
+
+    public function index()
+    {
+        $productsWithQuantity = Cart::find( session('cart.id') )->getLineDetails();
+        $cartTotal = $productsWithQuantity->sum('subtotal');
+        return view( 'customer.cart', compact('productsWithQuantity', 'cartTotal') );
+    }
+
     public function store()
     {
     	// Validating that product has been sent, is a valid product and in stock
@@ -16,7 +25,7 @@ class CartController extends Controller
             'products' => [
                 'required',
                 function($attribute, $value, $fail) {
-                    if ( \App\Models\Product::where('slug', $value)->where('stock', '>', 0)->get()->isEmpty() ) {
+                    if ( Product::where('slug', $value)->where('stock', '>', 0)->get()->isEmpty() ) {
                         return $fail($attribute.' is invalid.');
                     }
                 },

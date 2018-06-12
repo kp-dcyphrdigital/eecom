@@ -15,9 +15,9 @@ class Processor
 		return $this->paymentgateway->clientToken()->generate();
 	}
 
-	public function charge()
+	public function charge($cartTotal)
 	{
-		$amount = '300.00';
+		$amount = $cartTotal;
 		$result = $this->paymentgateway->transaction()->sale([
 		  'amount' => $amount,
 		  'paymentMethodNonce' => request('payment_method_nonce'),
