@@ -2,14 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CartController extends Controller
 {
     public function store()
     {
-    	if ( ! session('cart.id') ) {
+    	// Validating that product has been sent, is a valid product and in stock
+        request()->validate([
+            'products' => [
+                'required',
+                function($attribute, $value, $fail) {
+                    if ( \App\Models\Product::where('slug', $value)->where('stock', '>', 0)->get()->isEmpty() ) {
+                        return $fail($attribute.' is invalid.');
+                    }
+                },
+            ],
+        ]);
+
+        if ( ! session('cart.id') ) {
     		$cart = Cart::create([
     			'products' => request('products')
     		]);
