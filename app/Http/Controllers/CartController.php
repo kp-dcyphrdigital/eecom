@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Validator;
 use App\Models\Cart;
-use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Repositories\CartRepository;
 
@@ -32,13 +29,11 @@ class CartController extends Controller
     {
     	// Validating that product has been sent, is a valid product and in stock
         request()->validate([
-            'products' => [
+            'product' => [
                 'required',
-                function($attribute, $value, $fail) {
-                    if ( ! Product::checkInStockBySlug($value) ) {
-                        return $fail($attribute.' is invalid.');
-                    }
-                },
+                Rule::exists('products', 'slug')->where(function ($query) {
+                    $query->where('stock', '>', 0);
+                }),
             ],
         ]);
 

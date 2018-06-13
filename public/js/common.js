@@ -140,7 +140,7 @@ $(document).ready(function() {
         $.ajax( {
             url: "/cart", 
             method: "post", 
-            data: { products: product },
+            data: { product: product },
             success: function(result) {
                 $(".fa-shopping-cart").text(result);
             }

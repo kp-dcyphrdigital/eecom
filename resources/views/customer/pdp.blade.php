@@ -73,6 +73,7 @@
 						</li>
 					</ul>
 				</div>
+				@if ($product->stock > 0 )
 				<div class="color">
 					<ul>
 						<li>
@@ -106,6 +107,9 @@
 				<div class="add-to-cart">
 					<button class="primary-btn" value="{{ $product->slug }}">add to cart</button>
 				</div>
+				@else
+				<h3 class="offer">OUT OF STOCK</h3>
+				@endif
 				<div class="extra-details">
 					<p class="offer">FREE SHIPPING ON ORDERS OVER $50 AUSTRALIA WIDE</p>
 					<ul>
