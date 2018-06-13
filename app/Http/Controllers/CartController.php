@@ -20,6 +20,9 @@ class CartController extends Controller
 
     public function index()
     {
+        if ( ! session('cart.id') ) {
+            return view( 'customer.cartnoitems' );
+        }
         $productsWithQuantity = $this->cartRepository->getLineDetailsById( session('cart.id') );
         $cartTotal = $this->cartRepository->getCartTotalById( session('cart.id') );
         return view( 'customer.cart', compact('productsWithQuantity', 'cartTotal') );
