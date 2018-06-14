@@ -1,5 +1,5 @@
 <?php
-
+// Hi this is test
 Route::get('/', 'HomeController@index');
 
 Route::get('/search', 'SearchController@index');
