@@ -39,14 +39,14 @@ class CartController extends Controller
 
         if ( ! session('cart.id') ) {
     		$cart = Cart::create([
-    			'products' => request('products')
+    			'products' => request('product')
     		]);
     		session()->put('cart.id', $cart->id);
             session()->put('cart.count', 1);
     	} else {
             $cart = Cart::where( 'id', session('cart.id') )->get();
             $cart->each( function($cart) {
-                    $cart->update( [ 'products' => $cart->products . ',' . request('products') ]);
+                    $cart->update( [ 'products' => $cart->products . ',' . request('product') ]);
             });
             session()->put('cart.count', session('cart.count') + 1);
         }
