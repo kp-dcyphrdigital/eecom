@@ -54,9 +54,10 @@
 						<div class="col-sm-6">
 							<div class="signup-container">
 								<p>Email Address: </p>
-								<form method="post" action="/subscribers/new">
+							<h1>{{ $errors->first('email') }}</h1>
+								<form method="post" action="/subscribers/new">									
 									@csrf
-									<input class="input" type="text" name="email" id="email" placeholder="Your Email Address">
+								<input class="input" type="text" name="email" value="{{ old('email') }}" id="email" placeholder="Your Email Address">
 								    <button type="submit" class="btn">sign up</button>
 								</form>
 							</div>
