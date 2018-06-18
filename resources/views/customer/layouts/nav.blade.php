@@ -28,8 +28,13 @@
                         <a href="#">Find a Store</a>
                       </li>
                       <li>
-                        <a href="#">My Account</a>
+                        <a href="{{ route('login') }}">My Account</a>
                       </li>
+                      @auth
+                      <li>
+                        <a href="{{ route('logout') }}">Logout</a>
+                      </li>
+                      @endauth
                     </ul>
                 </div>
               </div>

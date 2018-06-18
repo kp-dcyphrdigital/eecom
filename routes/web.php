@@ -1,6 +1,11 @@
 <?php
-// Hi this is test
-Route::get('/', 'HomeController@index');
+
+/* Default Laravel Auth routes */
+$this->get('logout', 'Auth\LoginController@logout')->name('logout');
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/', 'HomePageController@index');
 
 Route::get('/search', 'SearchController@index');
 
