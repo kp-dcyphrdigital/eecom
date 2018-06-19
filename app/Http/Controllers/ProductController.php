@@ -30,7 +30,11 @@ class ProductController extends Controller
 
 	public function show(Category $category, Product $product)
 	{
-		return view( 'customer.pdp', compact('product') );		
+		$variants = $product->variants;
+		for ($i=1; $variants->pluck('attribute' . $i)->unique()->values()->first() != null ; $i++) {
+			$attributeSet[] = $variants->pluck('attribute' . $i)->unique()->values();
+		}
+		return view( 'customer.pdp', compact('product', 'variants', 'attributeSet') );		
 	}
 
 }

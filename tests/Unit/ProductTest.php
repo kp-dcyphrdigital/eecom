@@ -13,7 +13,7 @@ class ProductTest extends TestCase
     /** @test */
     public function products_should_be_filterable_by_category()
     {
-        $exitCode = \Artisan::call('db:seed');
+        \Artisan::call('db:seed');
         $categories = '2,7';
         $products = (new Product)->byCategory($categories)
                         ->get()

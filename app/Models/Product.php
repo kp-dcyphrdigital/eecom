@@ -38,6 +38,14 @@ class Product extends Model
     }
 
     /**
+     * A product has many variants
+     */
+    public function variants()
+    {
+        return $this->hasMany('App\Models\Variant');
+    }
+
+    /**
      * Products can be filtered by category/categories
      */
     public function byCategory($categories)

@@ -1,6 +1,9 @@
 @extends('customer.layouts.master')
 
 @section('content')
+<script>
+	var variants = {!! $variants->toJson() !!};
+</script>
 
 <div class="breadcrumbs-wrapper">
 	<div class="container">
@@ -88,18 +91,29 @@
 						</li>
 					</ul>
 				</div>
+
+				@isset($attributeSet)
+				@foreach($attributeSet as $attribute)
+				
+				@if ($attribute->first() != "0")
 				<div class="row">
 					<div class="col-sm-8">
 						<div class="select-wrapper">
-							<label for="size">Size:</label>
-							<select>
+							<label for="{{ ('attribute' . $loop->iteration ) }}">{{ __('attribute' . $loop->iteration) }}:</label>
+							<select name="{{ ('attribute' . $loop->iteration ) }}" id="{{ ('attribute' . $loop->iteration ) }}">
 								<option value="">--</option>
-								<option value="14">14"</option>
-								<option value="15">15"</option>
+								@foreach($attribute as $attributeValue)
+									<option value="{{ $attributeValue }}">{{ $attributeValue }}</option>
+								@endforeach
 							</select>
 						</div>
 					</div>
 				</div>
+				@endif
+				
+				@endforeach
+				@endisset
+
 				<div class="quantity">
 					<label for="quantity">Quantity:</label>
 					<input type="text" id="quantity" value="1">
@@ -176,6 +190,5 @@
 		</div>
 	</div>
 </section>
-
 
 @endsection
