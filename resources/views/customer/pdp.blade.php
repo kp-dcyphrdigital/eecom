@@ -1,10 +1,6 @@
 @extends('customer.layouts.master')
 
 @section('content')
-<script>
-	var variants = {!! $variants->toJson() !!};
-</script>
-
 <div class="breadcrumbs-wrapper">
 	<div class="container">
 		<div class="row">
@@ -190,5 +186,33 @@
 		</div>
 	</div>
 </section>
+
+<script>
+	var variants = {!! $variants->toJson() !!};
+	
+	var attributeids = $( "select[id^='attribute']" ).map(function() {
+    	return $(this).attr('id');
+	}).get();
+	$( "select[id^='attribute']" ).change(function(){
+		var idOfChangedDropdown = $(this).attr('id');
+		var valOfChangedDropDown = $(this).val();
+		filtered = $(variants);
+		if (valOfChangedDropDown != '') {
+			filtered = filtered.filter(function(i, n) {
+				return n[idOfChangedDropdown] == valOfChangedDropDown; 
+			});
+		}
+		for(x in attributeids) {
+			var idOfCurrentDropDown = attributeids[x];
+			var valOfCurrentDropDown = $('#' + attributeids[x]).val();
+			if( idOfChangedDropdown != idOfCurrentDropDown && valOfCurrentDropDown != '' ) {
+				filtered = filtered.filter(function(i, n) {
+					return n[idOfCurrentDropDown] == valOfCurrentDropDown; 
+				});	
+			}
+		}
+		console.log(filtered);
+
+</script>
 
 @endsection
