@@ -64,22 +64,6 @@
 						</div>
 					</div>
 				</div>
-				<div class="visible-xs xs-mobile--icon">
-					<ul>
-						<li>
-							<a href="#"><i class="icon-pencil"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="icon-facebook"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="icon-twitter"></i></a>
-						</li>
-						<li>
-							<a href="#"><i class="icon-instagram"></i></a>
-						</li>
-					</ul>
-				</div>
 				<div class="address">
 					Addlon Trading p2 10-16 South St Rydalmere 2116
 				</div>
@@ -89,9 +73,9 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<div class="payment-icons">
-								<i class="icon-mastercard"></i>
-								<i class="icon-visa"></i>
-								<i class="icon-paypal"></i>
+								<i class="fab fa-cc-mastercard"></i>
+								<i class="fab fa-cc-visa"></i>
+								<i class="fab fa-cc-paypal"></i>
 							</div>
 						</div>
 						<div class="col-sm-4">
@@ -117,15 +101,8 @@
 		</footer>
 	</section>
 <!-- /Footer -->
+    <link href="/css/fontawesome-all.min.css" rel="stylesheet"/>
     <script src="/js/common.js"></script>
-    <!-- Cart Popup -->
-    <script>
-		$(document).ready(function(){
-			$(".close-cart--popup").click(function(){
-				$(".cart-product--popup").hide();
-			});
-		});
-	</script>
 	<!-- Homepage -->
 	<script src="/js/owl.carousel.min.js"></script>
 	<!-- Details -->

@@ -3,7 +3,7 @@
 
 @includeWhen( Request::is('/'), 'customer.layouts.carousel' )
 
-<div class=" mx-auto my-4">
+<div class="container mx-auto my-4">
 	@yield('content')
 </div>
 @include('customer.layouts.footer')

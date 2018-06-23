@@ -11,84 +11,174 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-		factory('App\Models\Category')->create([
-	        'name' => 'Hockey Skates',
-	        'slug' => 'hockey-skates',
-	        'depth' => 1,
-	        'image' => 'products/skate1.jpg',
+		$categories = collect ([ [ "Accessories", "Easton - Hockey Accessories", "Jocks, Cups & Supporters" ],
+		[ "Accessories", "Easton - Hockey Accessories", "Skate Tools & Hardware" ],
+		[ "Accessories", "Hockey - Accessories", "Coaches & Training Tools" ],
+		[ "Accessories", "Hockey - Accessories", "Goals & Replacement Nets" ],
+		[ "Accessories", "Hockey - Accessories", "Helmet Accessories" ],
+		[ "Accessories", "Hockey - Accessories", "Hockey Apparel" ],
+		[ "Accessories", "Hockey - Accessories", "Hockey Mouthguards" ],
+		[ "Accessories", "Hockey - Accessories", "Hockey Neck Guards & Slash Guards" ],
+		[ "Accessories", "Hockey - Accessories", "Hockey Under Apparel" ],
+		[ "Accessories", "Hockey - Accessories", "Jocks, Cups & Supporters" ],
+		[ "Accessories", "Hockey - Accessories", "Neck Protectors, Bibs & Slash Guards" ],
+		[ "Accessories", "Hockey - Accessories", "Water Bottles" ],
+		[ "Accessories", "Mission - Body Protectors", "Jocks, Cups & Supporters" ],
+		[ "Bags", "Easton - Hockey Bags", "Carry Bags" ],
+		[ "Bags", "Easton - Hockey Bags", "Wheeled Bags" ],
+		[ "Bags", "Hockey - Bags", "Backpack Bags" ],
+		[ "Bags", "Hockey - Bags", "Carry Bags" ],
+		[ "Bags", "Hockey - Bags", "Goalie Bags" ],
+		[ "Bags", "Hockey - Bags", "Helmet & Accessorie Bags" ],
+		[ "Bags", "Hockey - Bags", "Referee Equipment" ],
+		[ "Bags", "Hockey - Bags", "Stick Bags" ],
+		[ "Bags", "Hockey - Bags", "Wheeled Bags" ],
+		[ "Bags", "Ice - Skate Bags", "Carry Bags" ],
+		[ "Bags", "Mission - Bags", "Backpack Bags" ],
+		[ "Figure Skating", "Ice - Figure Blades", "Blades" ],
+		[ "Figure Skating", "Ice - Figure Blades", "Figure Blades Senior" ],
+		[ "Figure Skating", "Ice - Figure Skates", "Blades" ],
+		[ "Figure Skating", "Ice - Figure Skates", "Figure Skates" ],
+		[ "Figure Skating", "Ice - Figure Skates", "Figures Skates" ],
+		[ "Goalie", "Hockey - Goal", "Goal Accessories" ],
+		[ "Goalie", "Hockey - Goal", "Goalie Accessories" ],
+		[ "Goalie", "Hockey - Goal", "Goalie Cages" ],
+		[ "Goalie", "Hockey - Goal", "Goalie Chest & Arm" ],
+		[ "Goalie", "Hockey - Goal", "Goalie Masks & Neck Protectors" ],
+		[ "Goalie", "Hockey - Goal", "Goalie Neck & Throat Protectors" ],
+		[ "Goalie", "Hockey - Goal", "Goalie Pants" ],
+		[ "Goalie", "Hockey - Goal", "Goalie Skates" ],
+		[ "Goalie", "Hockey - Goal", "Goalie Sticks" ],
+		[ "Goalie", "Hockey - Goal", "Goals & Replacement Nets" ],
+		[ "Goalie", "Hockey - Goal", "Hockey Under Apparel" ],
+		[ "Goalie", "Hockey - Goal", "Intermediate Goalie Sticks" ],
+		[ "Goalie", "Hockey - Goal", "Intermediate Legs Pads" ],
+		[ "Goalie", "Hockey - Goal", "Jocks & Knee Protectors" ],
+		[ "Goalie", "Hockey - Goal", "Junior Blockers" ],
+		[ "Goalie", "Hockey - Goal", "Junior Catcher Gloves" ],
+		[ "Goalie", "Hockey - Goal", "Junior Goalie Masks" ],
+		[ "Goalie", "Hockey - Goal", "Junior Goalie Sticks" ],
+		[ "Goalie", "Hockey - Goal", "Junior Leg Pads" ],
+		[ "Goalie", "Hockey - Goal", "Senior Blockers" ],
+		[ "Goalie", "Hockey - Goal", "Senior Catcher Gloves" ],
+		[ "Goalie", "Hockey - Goal", "Senior Goalie Masks" ],
+		[ "Goalie", "Hockey - Goal", "Senior Goalie Sticks" ],
+		[ "Goalie", "Hockey - Goal", "Senior Leg Pads" ],
+		[ "Goalie", "Hockey - Goal", "Youth  Leg Pads" ],
+		[ "Goalie", "Hockey - Goal", "Youth Blockers" ],
+		[ "Goalie", "Hockey - Goal", "Youth Catcher Gloves" ],
+		[ "Goalie", "Hockey - Goal", "Youth Goalie Sticks" ],
+		[ "Goalie", "Hockey - Goal", "Youth Leg Pads" ],
+		[ "Hockey Skates", "Easton - Hockey Ice Blade", "Skate Holders & Runners" ],
+		[ "Hockey Skates", "Ice - Accessories", "Figure Skates" ],
+		[ "Hockey Skates", "Ice - Accessories", "Hockey Socks" ],
+		[ "Hockey Skates", "Ice - Accessories", "Skate Guards & Footbeds" ],
+		[ "Hockey Skates", "Ice - Accessories", "Skate Holders & Runners" ],
+		[ "Hockey Skates", "Ice - Accessories", "Skate Tools & Hardware" ],
+		[ "Hockey Skates", "Ice - Accessories", "Tape & Straps" ],
+		[ "Hockey Skates", "Ice - Goal Skates", "Goalie Skates" ],
+		[ "Hockey Skates", "Ice - Hockey Blades", "Skate Holders & Runners" ],
+		[ "Hockey Skates", "Ice - Hockey Skates", "Junior (1.0 - 5.5)" ],
+		[ "Hockey Skates", "Ice - Hockey Skates", "Senior (6 and up)" ],
+		[ "Hockey Skates", "Ice - Hockey Skates", "Youth (Y6.0 - Y13.5)" ],
+		[ "Hockey Skates", "Ice - Laces", "Figure Skate Accessories" ],
+		[ "Hockey Skates", "Ice - Laces", "Skate Laces" ],
+		[ "Hockey Skates", "Inline Bauer - Hockey Skates", "Coaches & Training Tools" ],
+		[ "Hockey Skates", "Inline Bauer - Hockey Skates", "Junior (1.0 - 5.5)" ],
+		[ "Hockey Skates", "Inline Bauer - Hockey Skates", "Neck Protectors, Bibs & Slash Guards" ],
+		[ "Hockey Skates", "Inline Bauer - Hockey Skates", "Senior (6 and up)" ],
+		[ "Hockey Skates", "Inline Bauer - Hockey Skates", "Youth (Y6.0 - Y13.5)" ],
+		[ "Hockey Skates", "Inline Hockey Skates", "Junior (1.0 - 5.5)" ],
+		[ "Hockey Skates", "Inline Hockey Skates", "Senior (6 and up)" ],
+		[ "Hockey Skates", "Inline Hockey Skates", "Youth (Y6.0 - Y13.5)" ],
+		[ "Hockey Skates", "Mission - Accessories", "Inline Bearings / Spacers / Axles" ],
+		[ "Hockey Skates", "Mission - Wheels", "Inline Wheels" ],
+		[ "Hockey Sticks", "Easton - Hockey Stick Composite", "Intermediate" ],
+		[ "Hockey Sticks", "Easton - Hockey Stick Composite", "Junior" ],
+		[ "Hockey Sticks", "Easton - Hockey Stick Composite", "Senior" ],
+		[ "Hockey Sticks", "Hockey - Composite Stick", "Intermediate" ],
+		[ "Hockey Sticks", "Hockey - Composite Stick", "Junior" ],
+		[ "Hockey Sticks", "Hockey - Composite Stick", "Senior" ],
+		[ "Hockey Sticks", "Hockey - Composite Stick", "Youth" ],
+		[ "Hockey Sticks", "Hockey - Stick Accessories", "Goals & Replacement Nets" ],
+		[ "Hockey Sticks", "Hockey - Stick Accessories", "Pucks & Balls" ],
+		[ "Hockey Sticks", "Hockey - Stick Accessories", "Stick Accessories" ],
+		[ "Hockey Sticks", "Hockey - Stick Accessories", "Stick Tape" ],
+		[ "Hockey Sticks", "Hockey - Stick Accessories", "Tape & Straps" ],
+		[ "Hockey Sticks", "Hockey - Stick Blades", "Replacement Blades" ],
+		[ "Hockey Sticks", "Hockey - Stick Wood", "Junior" ],
+		[ "Hockey Sticks", "Hockey - Stick Wood", "Senior" ],
+		[ "Hockey Sticks", "Hockey - Stick Wood", "Youth" ],
+		[ "Jerseys & Apparel", "BH - Soft Goods", "Hockey Apparel" ],
+		[ "Jerseys & Apparel", "BH - Soft Goods", "Hockey Hats" ],
+		[ "Jerseys & Apparel", "BH - Soft Goods", "Hockey Shirts & Tees" ],
+		[ "Jerseys & Apparel", "BH - Soft Goods", "Hockey Socks" ],
+		[ "Jerseys & Apparel", "BH - Soft Goods", "Hockey Under Apparel" ],
+		[ "Jerseys & Apparel", "BH - Soft Goods", "Ice Hockey Pants" ],
+		[ "Jerseys & Apparel", "BH - Soft Goods", "Womens Hockey" ],
+		[ "Jerseys & Apparel", "Hockey - Jerseys", "Hockey Jerseys" ],
+		[ "Jerseys & Apparel", "Hockey - Jerseys", "Hockey Under Apparel" ],
+		[ "Jerseys & Apparel", "Hockey - Stockings", "Hockey Socks" ],
+		[ "Protective", "Easton - Hockey Elbows", "Junior" ],
+		[ "Protective", "Easton - Hockey Gloves", "Senior (13 Inch - 15 Inch)" ],
+		[ "Protective", "Easton - Hockey Shins", "Junior (10 Inch - 13 Inch)" ],
+		[ "Protective", "Easton - Hockey Shins", "Senior (14 Inch - 18 Inch)" ],
+		[ "Protective", "Easton - Hockey Shoulder Pads", "Junior" ],
+		[ "Protective", "Easton - Hockey Shoulder Pads", "Senior" ],
+		[ "Protective", "Hockey - Body Protectors", "Ice Hockey Pants" ],
+		[ "Protective", "Hockey - Elbows", "Junior" ],
+		[ "Protective", "Hockey - Elbows", "Senior" ],
+		[ "Protective", "Hockey - Elbows", "Youth" ],
+		[ "Protective", "Hockey - Gloves", "Junior (10 Inch - 12 Inch)" ],
+		[ "Protective", "Hockey - Gloves", "Senior (13 Inch - 15 Inch)" ],
+		[ "Protective", "Hockey - Gloves", "Youth (7 Inch - 9 Inch)" ],
+		[ "Protective", "Hockey - Helmet Accessories", "Goalie Accessories" ],
+		[ "Protective", "Hockey - Helmet Accessories", "Helmet & Accessorie Bags" ],
+		[ "Protective", "Hockey - Helmet Accessories", "Helmet Accessories" ],
+		[ "Protective", "Hockey - Helmet Accessories", "Helmet Half Shields" ],
+		[ "Protective", "Hockey - Helmet Accessories", "Hockey Helmets & Combos" ],
+		[ "Protective", "Hockey - Helmet Accessories", "Skate Tools & Hardware" ],
+		[ "Protective", "Hockey - Helmet Combo", "Hockey Helmets & Combos" ],
+		[ "Protective", "Hockey - Helmets", "Hockey Helmets & Combos" ],
+		[ "Protective", "Hockey - Masks", "Helmet Cages" ],
+		[ "Protective", "Hockey - Masks", "Helmet Half Shields" ],
+		[ "Protective", "Hockey - Pants", "Ice Hockey Pants" ],
+		[ "Protective", "Hockey - Pants", "Inline Hockey Pants" ],
+		[ "Protective", "Hockey - Shins", "Junior (10 Inch - 13 Inch)" ],
+		[ "Protective", "Hockey - Shins", "Senior (14 Inch - 18 Inch)" ],
+		[ "Protective", "Hockey - Shoulder Pads", "Junior" ],
+		[ "Protective", "Hockey - Shoulder Pads", "Senior" ],
+		[ "Protective", "Hockey - Shoulder Pads", "Womens Hockey" ],
+		[ "Protective", "Hockey - Shoulder Pads", "Youth" ],
+		[ "Protective", "Mission - Pants", "Inline Hockey Pants" ],
+		[ "Protective", "Shoulder Pads", "Youth" ]
 		]);
-		factory('App\Models\Category')->create([
-			'parent_id' => 1,
-	        'name' => 'Ice Hockey Skates',
-	        'slug' => 'ice-hockey-skates',
-	        'depth' => 2,
-	        'image' => 'products/skate2.jpg',
-		]);
-		for ($i=0; $i < 3; $i++) {
-			factory('App\Models\Category')->create([
-				'parent_id' => 2,
-				'depth' => 3,
-				'image' => 'products/skate' . rand(1,2) . '.jpg',
-			]);
-		}
-		factory('App\Models\Category')->create([
-	        'name' => 'Hockey Sticks',
-	        'slug' => 'hockey-sticks',
-	        'depth' => 1,
-	        'image' => 'products/stick1.jpg',
-		]);
-		factory('App\Models\Category')->create([
-			'parent_id' => 6,
-	        'name' => 'Composite Hockey Sticks',
-	        'slug' => 'composite-hockey-sticks',
-	        'depth' => 2,
-	        'image' => 'products/stick2.jpg',
-		]); 
-		factory('App\Models\Category')->create([
-	        'name' => 'Protective',
-	        'slug' => 'protective',
-	        'depth' => 1,
-	        'image' => 'products/glove1.jpg',
-		]);
-		factory('App\Models\Category')->create([
-			'parent_id' => 8,
-	        'name' => 'Hockey Gloves',
-	        'slug' => 'hockey-gloves',
-	        'depth' => 2,
-	        'image' => 'products/glove2.jpg',
-		]);
-		factory('App\Models\Category', 5)->create([
-	        'depth' => 1,
-		]);
-		factory('App\Models\Category')->create([
-	        'name' => 'Clearance',
-	        'slug' => 'clearance',
-	        'depth' => 1,
-	        'image' => 'products/glove1.jpg',
-		]);
-		factory('App\Models\Category')->create([
-	        'name' => 'Super Sale',
-	        'slug' => 'super_sale',
-			'parent_id' => 15,
-	        'depth' => 2,
-	        'image' => 'products/glove1.jpg',
-		]);
-		for ($i=0; $i < 6; $i++) {
-			factory('App\Models\Category')->create([
-				'parent_id' => 1,
-				'depth' => 2,
-				'image' => 'products/skate' . rand(1,2) . '.jpg',
-			]);
-			factory('App\Models\Category')->create([
-				'parent_id' => 6,
-				'depth' => 2,
-				'image' => 'products/stick' . rand(1,4) . '.jpg',
-			]);
-			factory('App\Models\Category')->create([
-				'parent_id' => 8,
-				'depth' => 2,
-				'image' => 'products/glove' . rand(1,2) . '.jpg',
-			]);
-		}
+
+		$categories->unique(0)->pluck(0)->each(function($l1item) use ($categories) {
+			$l1id = factory('App\Models\Category')->create([
+		        'name' => $l1item,
+		        'slug' => str_slug($l1item, '-'),
+		        'depth' => 1,
+		        'image' => 'products/skate1.jpg',
+			])->id;
+			$categories->where(0, $l1item)->unique(1)->pluck(1)->each(function($l2item) use ($categories, $l1item, $l1id) {
+				$l2id = factory('App\Models\Category')->create([
+			        'parent_id' => $l1id,
+			        'name' => $l2item,
+			        'slug' => str_slug($l2item, '-'),
+			        'depth' => 2,
+			        'image' => 'products/skate1.jpg',
+				])->id;
+				$categories->where(0, $l1item)->where(1, $l2item)->pluck(2)->each(function($l3item) use ($l1item, $l2item, $l2id) {
+					factory('App\Models\Category')->create([
+				        'parent_id' => $l2id,
+				        'name' => $l3item,
+				        'slug' => str_slug($l3item, '-'),
+				        'depth' => 2,
+				        'image' => 'products/skate1.jpg',
+					]);
+				});
+			});
+		});
     }
 }

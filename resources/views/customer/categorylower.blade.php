@@ -54,12 +54,72 @@
 		<div class="col-sm-4 col-md-3">
 			<div class="plp-container--sidebar">
 				<aside class="brand">
-					<h3 class="main-heading">Brands</h3>
-					<ul>
-						<li><a href="#">Bauer</a><span class="count">(20)</span></li>
-						<li><a href="#">CCM</a><span class="count">(20)</span></li>
-						<li><a href="#">Easton</a><span class="count">(20)</span></li>
-						<li><a href="#">Bauer</a><span class="count">(20)</span></li>
+					<h3 class="main-heading">FEATURED</h3>
+					<ul class="select-option">
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon selected"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+					</ul>
+				</aside>
+				<aside class="brand">
+					<h3>HAND</h3>
+					<ul class="select-option">
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon selected"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+					</ul>
+				</aside>
+				<aside class="brand">
+					<h3>FLEX</h3>
+					<ul class="select-option">
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon selected"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
 					</ul>
 				</aside>
 				<aside class="filter-price--slider">
@@ -71,28 +131,28 @@
 						<input type="number" min="0" max="1000" step="1" id="input-number">
 					</div>
 				</aside>
-				<aside class="skate">
-					<h3 class="main-heading">SKATE SIZE</h3>
-					<div class="input-wrapper">
-			        	<select name="orderby" class="select-field">
-			        		    <option value="popularity">All</option>
-								<option value="popularity">6 (7.5 - US / 40.5 - EU)</option>
-								<option value="rating">4.5 (5.5 - US / 38 - EU)</option>
-								<option value="date">5.5 (6.5 - US / 39 - EU)</option>
-								<option value="price">6 (7.5 - US / 40.5 - EU)</option>
-						</select>
-					</div>
-				</aside>
-				<aside class="skate">
-					<h3 class="main-heading">SKATE WIDTH</h3>
-					<div class="input-wrapper">
-			        	<select name="orderby" class="select-field">
-			        		    <option value="popularity">All</option>
-								<option value="popularity">D</option>
-								<option value="rating">EE</option>
-								<option value="date">Regular</option>
-						</select>
-					</div>
+				<aside class="brand">
+					<h3>PATTERN</h3>
+					<ul class="select-option">
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon selected"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							    <div class="checked-icons"><div class="show-icon"></div></div>
+							    Bauer &nbsp;(20)
+							</a>
+						</li>
+					</ul>
 				</aside>
 				<aside>
 					<a href="#" class="primary-btn">reset all filters</a>

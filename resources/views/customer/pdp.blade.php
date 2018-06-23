@@ -87,10 +87,8 @@
 						</li>
 					</ul>
 				</div>
-
 				@isset($attributeSet)
 				@foreach($attributeSet as $attribute)
-				
 				@if ($attribute->first() != "0")
 				<div class="row">
 					<div class="col-sm-8">
@@ -106,10 +104,49 @@
 					</div>
 				</div>
 				@endif
-				
 				@endforeach
 				@endisset
-
+				<div class="row">
+					<div class="col-md-12">
+						<div class="pdp-select--type">
+							<p class="head">Size:</p>
+							<ul>
+								<li class="selected">6.0</li>
+								<li>7.0</li>
+								<li>8.0</li>
+								<li>9.0</li>
+								<li>10.0</li>
+								<li>11.0</li>
+								<li>12.0</li>
+								<li>13.0</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="pdp-select--type">
+							<p class="head">Hand:</p>
+							<ul>
+								<li>Left</li>
+								<li class="selected">Right</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<div class="pdp-select--type">
+							<p class="head">Width:</p>
+							<ul>
+								<li>A</li>
+								<li>B</li>
+								<li>C</li>
+								<li class="selected">D</li>
+							</ul>
+						</div>
+					</div>
+				</div>
 				<div class="quantity">
 					<label for="quantity">Quantity:</label>
 					<input type="text" id="quantity" value="1">

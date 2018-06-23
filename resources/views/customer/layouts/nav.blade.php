@@ -40,14 +40,69 @@
               </div>
               </div>
             <div class="bottom">
-              <ul>
-                <li>
-                  <a href="#" class="search-header--popup"><i class="fas fa-search"></i></a>
-                </li>
-                <li>
-                  <a href="/cart"><i class="fas fa-shopping-cart">{{ session('cart.count') }}</i></a>
-                </li>
-              </ul>
+                <ul>
+                  <li>
+                    <a href="#" class="search-header--popup"><i class="icon-search"></i></a>
+                  </li>
+                  <li>
+                    <a href="/cart"><i class="icon-shopping-cart"><span class="cart-number">{{ session('cart.count') }}</span></i></a>
+                  </li>
+                </ul>
+                <div class="cart-product--popup" style="display: none;">
+                  <div class="close close-cart--popup"><i class="icon-error"></i></div>
+                  <div class="product-wrapper container-full">
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" width="100%" alt="">
+                      </div>
+                      <div class="col-xs-5">
+                        <div class="info">
+                          <h3>Baur Supreme 1S Ice Hockey Skate</h3>
+                          <p>Size: Normal</p>
+                          <p>Qty: 1</p>
+                          <p><a href="#" class="remove">Remove</a></p>
+                        </div>
+                      </div>
+                      <div class="col-xs-3">
+                        <p class="price">&dollar;249.95</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-wrapper container-full">
+                    <div class="row">
+                      <div class="col-xs-4">
+                        <img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" width="100%" alt="">
+                      </div>
+                      <div class="col-xs-5">
+                        <div class="info">
+                          <h3>Baur Supreme 1S Ice Hockey Skate</h3>
+                          <p>Size: Normal</p>
+                          <p>Qty: 1</p>
+                          <p><a href="#" class="remove">Remove</a></p>
+                        </div>
+                      </div>
+                      <div class="col-xs-3">
+                        <p class="price">&dollar;249.95</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="product-info clearfix">
+                    <div class="row">
+                      <div class="col-xs-6">
+                        <p class="price">Order Subtotal</p>
+                      </div>
+                      <div class="col-xs-6">
+                        <p class="price right">&dollar;249.95</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="checkout-button">
+                    <button class="primary-btn">Checkout</button>
+                  </div>
+                  <div class="checkout-button">
+                    <button class="primary-btn">continue shopping</button>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
@@ -65,9 +120,64 @@
             <img src="http://syginteractive.com/web/skaters/images/skaters-network-logo.png" width="240" alt="Skaters Network">
           </div>
           <div class="mob-cart">
-            <i class="fas fa-shopping-cart"></i>
+            <i class="icon-shopping-cart"><span class="cart-number">{{ session('cart.count') }}</span></i>
           </div>
-      </div>
+    	    <div class="cart-product--popup" style="display: none;">
+        			<div class="close close-cart--popup"><i class="icon-error"></i></div>
+        			<div class="product-wrapper container-full">
+        				<div class="row">
+        					<div class="col-xs-4">
+        						<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" width="100%" alt="">
+        					</div>
+        					<div class="col-xs-5">
+        						<div class="info">
+        							<h3>Baur Supreme 1S Ice Hockey Skate</h3>
+        							<p>Size: Normal</p>
+        							<p>Qty: 1</p>
+        							<p><a href="#" class="remove">Remove</a></p>
+        						</div>
+        					</div>
+        					<div class="col-xs-3">
+        						<p class="price">&dollar;249.95</p>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="product-wrapper container-full">
+        				<div class="row">
+        					<div class="col-xs-4">
+        						<img src="http://syginteractive.com/web/skaters/images/products/product2.jpg" width="100%" alt="">
+        					</div>
+        					<div class="col-xs-5">
+        						<div class="info">
+        							<h3>Baur Supreme 1S Ice Hockey Skate</h3>
+        							<p>Size: Normal</p>
+        							<p>Qty: 1</p>
+        							<p><a href="#" class="remove">Remove</a></p>
+        						</div>
+        					</div>
+        					<div class="col-xs-3">
+        						<p class="price">&dollar;249.95</p>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="product-info clearfix">
+        				<div class="row">
+        					<div class="col-xs-6">
+        						<p class="price">Order Subtotal</p>
+        					</div>
+        					<div class="col-xs-6">
+        						<p class="price right">&dollar;249.95</p>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="checkout-button">
+        				<button class="primary-btn">Checkout</button>
+        			</div>
+        			<div class="checkout-button">
+        				<button class="primary-btn">continue shopping</button>
+        			</div>
+    		  </div>
+    	</div>
       <nav class="cd-nav">
         <ul id="cd-primary-nav" class="cd-primary-nav is-fixed">
 
@@ -103,7 +213,7 @@
     </header>
     <div class="search-container" id="header-search--popup">
     <div class="search-wrapper">
-      <div class="close"><i class="far fa-window-close"></i></div>
+      <div class="close"><i class="icon-error"></i></div>
       <form role="search" action="#" method="get">
         <input type="search" name="q" id="q" class="o-header__search small valid" placeholder="SEARCH PRODUCTS" itemprop="query-input" autocomplete="off">
         <button type="submit"><i class="fas fa-arrow-right"></i></button>

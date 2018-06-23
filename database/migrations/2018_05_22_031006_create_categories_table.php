@@ -17,10 +17,11 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
             $table->char('slug', 100);
             $table->string('name');
-            $table->unsignedTinyInteger('depth');
             $table->string('image');
             $table->timestamps();
             $table->nestedSet();
+            $table->unsignedTinyInteger('depth');
+            $table->unsignedTinyInteger('order')->default(0);
         });
     }
 
