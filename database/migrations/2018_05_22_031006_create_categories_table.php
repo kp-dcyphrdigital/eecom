@@ -21,7 +21,8 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
             $table->nestedSet();
             $table->unsignedTinyInteger('depth');
-            $table->unsignedTinyInteger('order')->default(0);
+            $table->unsignedTinyInteger('sequence')->default(0);
+
         });
     }
 

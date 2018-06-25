@@ -35,7 +35,7 @@ class NavComposer
     public function compose(View $view)
     {
         $navtree = Cache::remember('navtree', 43200, function() { 
-            return $this->categories->orderBy('order')->get()->toTree();
+            return $this->categories->orderBy('sequence')->get()->toTree();
         });   
         $view->with(compact('navtree'));
     }
