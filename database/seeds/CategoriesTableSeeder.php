@@ -174,7 +174,7 @@ class CategoriesTableSeeder extends Seeder
 				        'parent_id' => $l2id,
 				        'name' => $l3item,
 				        'slug' => str_slug($l3item, '-'),
-				        'depth' => 2,
+				        'depth' => 3,
 				        'image' => 'products/skate1.jpg',
 					]);
 				});
