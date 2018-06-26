@@ -22,7 +22,6 @@ class CreateCategoriesTable extends Migration
             $table->nestedSet();
             $table->unsignedTinyInteger('depth');
             $table->unsignedTinyInteger('sequence')->default(0);
-
         });
     }
 

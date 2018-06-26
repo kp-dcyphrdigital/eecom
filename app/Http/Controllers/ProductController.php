@@ -34,6 +34,10 @@ class ProductController extends Controller
 		for ($i=1; $variants->pluck('attribute' . $i)->unique()->values()->first() != null ; $i++) {
 			$attributeSet[] = $variants->pluck('attribute' . $i)->unique()->values();
 		}
+		$product->price = $variants->max('price');
+		$product->rrp = $variants->max('rrp');
+		$product->stock = $variants->max('stock');
+
 		return view( 'customer.pdp', compact('product', 'variants', 'attributeSet') );		
 	}
 

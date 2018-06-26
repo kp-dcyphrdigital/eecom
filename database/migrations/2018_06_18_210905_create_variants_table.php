@@ -17,9 +17,9 @@ class CreateVariantsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->string('sku');
-            $table->unsignedMediumInteger('price');
-            $table->unsignedMediumInteger('rrp');
-            $table->unsignedSmallInteger('stock');
+            $table->unsignedInteger('price');
+            $table->unsignedInteger('rrp');
+            $table->unsignedMediumInteger('stock');
             $table->string('attribute1')->default('0');
             $table->string('attribute2')->default('0');
             $table->string('attribute3')->default('0');

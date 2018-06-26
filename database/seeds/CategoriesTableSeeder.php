@@ -67,8 +67,8 @@ class CategoriesTableSeeder extends Seeder
 								'attribute4' => trim($variant->HAND) == '' ? 0 : trim($variant->HAND), 
 								'attribute5' => trim($variant->FLEX) == '' ? 0 : trim($variant->FLEX), 
 								'attribute6' => trim($variant->PATTERN) == '' ? 0 : trim($variant->PATTERN),
-								'price' => (int)ltrim($variant->PRICE, "$") * 100,
-								'rrp' => (int)ltrim($variant->RRP, "$") * 100,
+								'price' => (int)ltrim( str_replace(",", "", $variant->PRICE), "$" ) * 100,
+								'rrp' => (int)ltrim( str_replace(",", "", $variant->RRP), "$" ) * 100,
 								'stock' => $variant->ON_HAND_QTY * 1 < 1 ? 0 : $variant->ON_HAND_QTY,
 							]);
 						});
@@ -79,6 +79,7 @@ class CategoriesTableSeeder extends Seeder
     }
     public function getSequence($item)
     {
+
     	if ($item == 'Hockey Skates') {
     		return 0;
     	} else if ($item == 'Hockey Sticks') {
