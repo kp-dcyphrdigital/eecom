@@ -17,6 +17,7 @@ class CreateVariantsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('product_id');
             $table->string('sku');
+            $table->char('barcode', 100)->nullable();
             $table->unsignedInteger('price');
             $table->unsignedInteger('rrp');
             $table->unsignedMediumInteger('stock');
@@ -25,7 +26,6 @@ class CreateVariantsTable extends Migration
             $table->string('attribute3')->default('0');
             $table->string('attribute4')->default('0');
             $table->string('attribute5')->default('0');
-            $table->string('attribute6')->default('0');
             $table->timestamps();
         });
     }

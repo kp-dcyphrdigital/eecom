@@ -17,11 +17,11 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->char('slug', 100);
             $table->string('style');
+            $table->string('colour');
             $table->string('name', 100);
             $table->text('description');
             $table->string('image');
             $table->char('brand', 100)->nullable();
-            $table->char('barcode', 100)->nullable();
             $table->char('badge', 10)->nullable();
             $table->unsignedTinyInteger('rating')->default(0);
             $table->boolean('featured')->default(0);

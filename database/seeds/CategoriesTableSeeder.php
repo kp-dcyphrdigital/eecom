@@ -15,26 +15,28 @@ class CategoriesTableSeeder extends Seeder
 		$categories->unique('STOCK_CATEGORY')->pluck('STOCK_CATEGORY')->each(function($l1item) use ($categories) {
 			$l1item = trim($l1item);
 			$sequence = $this->getSequence($l1item);
-			$l1id = factory('App\Models\Category')->create([
+			$l1 = factory('App\Models\Category')->create([
 		        'name' => $l1item,
 		        'slug' => str_slug($l1item, '-'),
 		        'depth' => 1,
 		        'image' => 'products/skate1.jpg',
 		        'sequence' => $sequence,
-			])->id;
-			$categories->where('STOCK_CATEGORY', $l1item)->unique('SUB_CATEGORY_NAME')->pluck('SUB_CATEGORY_NAME')->each(function($l2item) use ($categories, $l1item, $l1id) {
+			]);
+			$l1id = $l1->id;
+			$l1slug = $l1->slug;
+			$categories->where('STOCK_CATEGORY', $l1item)->unique('SUB_CATEGORY_NAME')->pluck('SUB_CATEGORY_NAME')->each(function($l2item) use ($categories, $l1item, $l1id, $l1slug) {
 				$l2id = factory('App\Models\Category')->create([
 			        'parent_id' => $l1id,
 			        'name' => trim($l2item),
-			        'slug' => $l1id . str_slug($l2item, '-'),
+			        'slug' => $l2slug = $l1slug . '-' . str_slug($l2item, '-'),
 			        'depth' => 2,
 			        'image' => 'products/skate1.jpg',
 				])->id;
-				$categories->where('STOCK_CATEGORY', $l1item)->where('SUB_CATEGORY_NAME', $l2item)->pluck('SUB CATEGORY 2')->each(function($l3item) use ($l1item, $l2item, $l2id) {
+				$categories->where('STOCK_CATEGORY', $l1item)->where('SUB_CATEGORY_NAME', $l2item)->pluck('SUB CATEGORY 2')->each(function($l3item) use ($l1item, $l2item, $l2id, $l2slug) {
 					$l3id = factory('App\Models\Category')->create([
 				        'parent_id' => $l2id,
 				        'name' => trim($l3item),
-				        'slug' => $l2id . str_slug($l3item, '-'),
+				        'slug' => rtrim($l2slug . '-' . str_slug($l3item, '-'), "/"),
 				        'depth' => 3,
 				        'image' => 'products/skate1.jpg',
 					])->id;
@@ -43,32 +45,35 @@ class CategoriesTableSeeder extends Seeder
 									->where('SUB CATEGORY 2', $l3item)
 									->orderBy('STYLE')
 									->get();
-					$products->unique('STYLE')->each(function($product) use ($l3id, $products) {
+					$uniquestylecolour = $products->unique(function($item) {
+						return $item->STYLE . $item->COLOUR;
+					});
+					$uniquestylecolour->each(function($product) use ($l3id, $products) {
 						$createdproduct = factory('App\Models\Product')->create([
 						    'style' => $product->STYLE,
+						    'colour' => $product->COLOUR,
 						    'name' => $product->STOCK_ALPHA,
 						    'description' => 'Product Description Here',
 						    'image' => 'products/skate1.jpg',
 						    'rating' => 4,
 						    'featured' => 1,
-						    'slug' => str_slug($product->STYLE, '-'),
+						    'slug' => rtrim(str_slug($product->STOCK_ALPHA . $product->STYLE, '-') . "/" . str_slug($product->COLOUR, '-'), "/"),
 						    'brand' => $product->BRAND,
-						    'barcode' => $product->BAR_STOCK_CODE,
 						]);
 						$createdproduct->categories()->attach([$l3id]);
 						$createdproductid = $createdproduct->id;
-						$products->where('STYLE', $product->STYLE)->each(function($variant) use ($createdproductid) {
+						$products->where('STYLE', $product->STYLE)->where('COLOUR', $product->COLOUR)->each(function($variant) use ($createdproductid) {
 							factory('App\Models\Variant')->create([
 								'product_id' => $createdproductid,
 								'sku' => $variant->STOCK_CODE,
-								'attribute1' => trim($variant->COLOUR) == '' ? 0 : trim($variant->COLOUR),
-								'attribute2' => trim($variant->SIZE) == '' ? 0 : trim($variant->SIZE), 
-								'attribute3' => trim($variant->WIDTH) == '' ? 0 : trim($variant->WIDTH),
-								'attribute4' => trim($variant->HAND) == '' ? 0 : trim($variant->HAND), 
-								'attribute5' => trim($variant->FLEX) == '' ? 0 : trim($variant->FLEX), 
-								'attribute6' => trim($variant->PATTERN) == '' ? 0 : trim($variant->PATTERN),
-								'price' => (int)ltrim( str_replace(",", "", $variant->PRICE), "$" ) * 100,
-								'rrp' => (int)ltrim( str_replace(",", "", $variant->RRP), "$" ) * 100,
+						    	'barcode' => $variant->BAR_STOCK_CODE,
+								'attribute1' => trim($variant->SIZE) == '' ? 0 : trim($variant->SIZE), 
+								'attribute2' => trim($variant->WIDTH) == '' ? 0 : trim($variant->WIDTH),
+								'attribute3' => trim($variant->HAND) == '' ? 0 : trim($variant->HAND), 
+								'attribute4' => trim($variant->FLEX) == '' ? 0 : trim($variant->FLEX), 
+								'attribute5' => trim($variant->PATTERN) == '' ? 0 : trim($variant->PATTERN),
+								'price' => (int)ltrim( str_replace(",", "", $variant->PRICE), "$" ),
+								'rrp' => (int)ltrim( str_replace(",", "", $variant->RRP), "$" ),
 								'stock' => $variant->ON_HAND_QTY * 1 < 1 ? 0 : $variant->ON_HAND_QTY,
 							]);
 						});
