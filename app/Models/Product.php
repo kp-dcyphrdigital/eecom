@@ -16,11 +16,19 @@ class Product extends Model
     }
 
     /**
+     * A hero product has many variants
+     */
+    public function heroVariants()
+    {
+        return $this->hasMany('App\Models\Variant');
+    }
+
+    /**
      * A product has many variants
      */
     public function variants()
     {
-        return $this->hasMany('App\Models\Variant');
+        return $this->hasMany('App\Models\Variant', 'style', 'style');
     }
 
     /**
@@ -33,15 +41,5 @@ class Product extends Model
 		    $query->whereIn('id', $categories);
 		});
     }
-
-	/**
-	 * Get the route key for the model.
-	 *
-	 * @return string
-	 */
-	public function getRouteKeyName()
-	{
-	    return 'slug';
-	}  
 
 }

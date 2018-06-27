@@ -30,16 +30,18 @@ class ProductController extends Controller
 
 	public function show($productslug, $colour = null)
 	{
+		$style = Product::where('slug', 'LIKE', "%$productslug%")->pluck('style')->first();
+		if ( ! $style ) {
+			abort(404);
+		}
+		$product = Product::where('slug', 'LIKE', "%$productslug")->first();
 		if ($colour) {
 			$productslug = $productslug . "/" . $colour;
-			$product = Product::where('slug', 'LIKE', "%$productslug%")->first();
+			$product = Product::where('slug', 'LIKE', "%$productslug")->first();
 		} else {
 			$product = Product::where('hero', 1)
 						->where('slug', 'LIKE', "%$productslug%")
 						->first();
-		}
-		if ( ! $product ) {
-			abort(404);
 		}
 
 		$variants = $product->variants;

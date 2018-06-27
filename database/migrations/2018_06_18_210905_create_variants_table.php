@@ -16,6 +16,7 @@ class CreateVariantsTable extends Migration
         Schema::create('variants', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('product_id');
+            $table->string('style');
             $table->string('sku');
             $table->char('barcode', 100)->nullable();
             $table->unsignedInteger('price');
@@ -26,6 +27,7 @@ class CreateVariantsTable extends Migration
             $table->string('attribute3')->default('0');
             $table->string('attribute4')->default('0');
             $table->string('attribute5')->default('0');
+            $table->string('attribute6')->default('0');
             $table->timestamps();
         });
     }

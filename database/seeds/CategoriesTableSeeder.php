@@ -45,14 +45,14 @@ class CategoriesTableSeeder extends Seeder
 					});
 					$uniquestylecolour->each(function($product) use ($l3id, $products) {
 						$createdproduct = factory('App\Models\Product')->create([
-						    'style' => $product->STYLE,
-						    'colour' => $product->COLOUR,
-						    'name' => $product->STOCK_ALPHA,
+						    'style' => trim($product->STYLE),
+						    'colour' => trim($product->COLOUR),
+						    'name' => trim($product->STOCK_ALPHA),
 						    'description' => 'Product Description Here',
 						    'image' => 'products/skate1.jpg',
 						    'rating' => 4,
 						    'slug' => rtrim(str_slug($product->STOCK_ALPHA . $product->STYLE, '-') . "/" . str_slug($product->COLOUR, '-'), "/"),
-						    'brand' => $product->BRAND,
+						    'brand' => trim($product->BRAND),
 						]);
 						$createdproduct->categories()->attach([$l3id]);
 						$createdproductid = $createdproduct->id;
@@ -60,12 +60,14 @@ class CategoriesTableSeeder extends Seeder
 							factory('App\Models\Variant')->create([
 								'product_id' => $createdproductid,
 								'sku' => $variant->STOCK_CODE,
+								'style' => $variant->STYLE,
 						    	'barcode' => $variant->BAR_STOCK_CODE,
-								'attribute1' => trim($variant->SIZE) == '' ? 0 : trim($variant->SIZE), 
-								'attribute2' => trim($variant->WIDTH) == '' ? 0 : trim($variant->WIDTH),
-								'attribute3' => trim($variant->HAND) == '' ? 0 : trim($variant->HAND), 
-								'attribute4' => trim($variant->FLEX) == '' ? 0 : trim($variant->FLEX), 
-								'attribute5' => trim($variant->PATTERN) == '' ? 0 : trim($variant->PATTERN),
+						    	'attribute1' => trim($variant->COLOUR) == '' ? 0 : trim($variant->COLOUR),
+								'attribute2' => trim($variant->SIZE) == '' ? 0 : trim($variant->SIZE), 
+								'attribute3' => trim($variant->WIDTH) == '' ? 0 : trim($variant->WIDTH),
+								'attribute4' => trim($variant->HAND) == '' ? 0 : trim($variant->HAND), 
+								'attribute5' => trim($variant->FLEX) == '' ? 0 : trim($variant->FLEX), 
+								'attribute6' => trim($variant->PATTERN) == '' ? 0 : trim($variant->PATTERN),
 								'price' => (int)ltrim( str_replace(",", "", $variant->PRICE), "$" ),
 								'rrp' => (int)ltrim( str_replace(",", "", $variant->RRP), "$" ),
 								'stock' => $variant->ON_HAND_QTY * 1 < 1 ? 0 : $variant->ON_HAND_QTY,
