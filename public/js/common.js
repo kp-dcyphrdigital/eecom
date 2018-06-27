@@ -135,16 +135,4 @@ $(document).ready(function() {
         }
     });
 
-    $(".add-to-cart > button").click(function(){
-        product = $(".add-to-cart > button").val();
-        $.ajax( {
-            url: "/cart", 
-            method: "post", 
-            data: { product: product },
-            success: function(result) {
-                $(".fa-shopping-cart").text(result);
-            }
-        });
-    });
-
 });

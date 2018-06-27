@@ -11,6 +11,6 @@ class SubscriberController extends Controller
     {
     	request()->validate(['email' => 'required|email|unique:subscribers']);
     	$subscriber->create(['email' => request('email')]);
-    	return back();
+    	return response()->json(['success'=>'Thanks for entering!']);
     }
 }

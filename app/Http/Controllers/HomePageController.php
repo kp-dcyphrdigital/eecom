@@ -28,6 +28,7 @@ class HomePageController extends Controller
     		}
     		return $category;
 		});
+
 		return view( 'customer.index', compact('products') );
 	}
 }

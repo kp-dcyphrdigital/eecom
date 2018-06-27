@@ -55,7 +55,7 @@
 							<div class="signup-container">
 								<p>Email Address: </p>
 							<h1>{{ $errors->first('email') }}</h1>
-								<form method="post" action="/subscribers/new">									
+								<form method="post" name="form_subscribers" action="" onsubmit="return check_subscribers()">									
 									@csrf
 								<input class="input" type="text" name="email" value="{{ old('email') }}" id="email" placeholder="Your Email Address">
 								    <button type="submit" class="btn">sign up</button>
@@ -251,6 +251,27 @@
 		inputNumber.addEventListener('change', function(){
 			html5Slider.noUiSlider.set([null, this.value]);
 		});
+	 </script>
+
+	<!-- Subscribers js -->
+	 <script>
+	 	function check_subscribers(){
+	 		let email = $("form[name='form_subscribers'] input[name='email']").val(); 
+		 	$.ajax({
+	            url: "/subscribers/new", 
+	            method: "post", 
+	            data: { email: email },
+	            success: function(response) {
+		 			$(".signup-container").find("h1").text(response.success);
+	            	return false;
+	            },
+	            error: function(error){
+	            	let obj = JSON.parse(error.responseText);
+	            	$(".signup-container").find("h1").text(obj.errors.email);
+	            }
+	        });
+	 		return false;
+	 	}
 	 </script>
 </body>
 </html>

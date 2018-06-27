@@ -1,6 +1,11 @@
 @extends('customer.layouts.master')
 
 @section('content')
+<style>
+   .pdp-select--type ul li.visible{background: #000; color: #ffffff;border: 1px solid #000000;}
+   .pdp-select--type ul li.selected{background: #0087ce !important; color: #ffffff !important;border: 1px solid #0087ce !important;}
+   .valerror{color:#ff0000;font-size: 12px; }
+</style>
 <div class="breadcrumbs-wrapper">
 	<div class="container">
 		<div class="row">
@@ -87,73 +92,39 @@
 						</li>
 					</ul>
 				</div>
-				@isset($attributeSet)
-				@foreach($attributeSet as $attribute)
-				@if ($attribute->first() != "0")
-				<div class="row">
-					<div class="col-sm-8">
-						<div class="select-wrapper">
-							<label for="{{ ('attribute' . $loop->iteration ) }}">{{ __('attribute' . $loop->iteration) }}:</label>
-							<select name="{{ ('attribute' . $loop->iteration ) }}" id="{{ ('attribute' . $loop->iteration ) }}">
-								<option value="">--</option>
-								@foreach($attribute as $attributeValue)
-									<option value="{{ $attributeValue }}">{{ $attributeValue }}</option>
-								@endforeach
-							</select>
+				<form action='' method='post' name='add_to_cart' onsubmit="return validate();">
+					@isset($attributeSet)
+					@foreach($attributeSet as $attribute)
+					@if ($attribute->first() != "0")
+					<div class="row">
+						<div class="col-md-12">
+							<div class="pdp-select--type">
+
+								@php
+									$attributeId= 'attribute' . $loop->iteration;
+									$head_class= 'head_'.$attributeId;
+								@endphp
+	                            <input type='hidden' name='{{$attributeId}}' />
+								<p class="head {{ $head_class }}">{{ __('attribute' . $loop->iteration) }}: <span style='font-family:Proxima,Helvetica,Arial,sans-serif'></span></p>
+								<ul class='{{ $attributeId }}'>
+									@foreach($attribute as $attributeValue)
+										<li class='filter visible' data-id="{{ $attributeId }}" data-value="{{ $attributeValue }}">{{ $attributeValue }}</li>
+									@endforeach
+								</ul>
+							</div>
 						</div>
 					</div>
-				</div>
-				@endif
-				@endforeach
-				@endisset
-				<div class="row">
-					<div class="col-md-12">
-						<div class="pdp-select--type">
-							<p class="head">Size:</p>
-							<ul>
-								<li class="selected">6.0</li>
-								<li>7.0</li>
-								<li>8.0</li>
-								<li>9.0</li>
-								<li>10.0</li>
-								<li>11.0</li>
-								<li>12.0</li>
-								<li>13.0</li>
-							</ul>
+					@endif
+					@endforeach
+					@endisset
+						<div class="quantity">
+							<label for="quantity">Quantity:<span style='font-family:Proxima,Helvetica,Arial,sans-serif'></span></label>
+							<input type="text" id="quantity" value="1">
 						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="pdp-select--type">
-							<p class="head">Hand:</p>
-							<ul>
-								<li>Left</li>
-								<li class="selected">Right</li>
-							</ul>
+						<div class="add-to-cart">
+							<button class="primary-btn" type="submit" name='add_to_cart' value="{{ $product->slug }}">add to cart</button>
 						</div>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-md-12">
-						<div class="pdp-select--type">
-							<p class="head">Width:</p>
-							<ul>
-								<li>A</li>
-								<li>B</li>
-								<li>C</li>
-								<li class="selected">D</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="quantity">
-					<label for="quantity">Quantity:</label>
-					<input type="text" id="quantity" value="1">
-				</div>
-				<div class="add-to-cart">
-					<button class="primary-btn" value="{{ $product->slug }}">add to cart</button>
-				</div>
+				</form>
 				@else
 				<h3 class="offer">OUT OF STOCK</h3>
 				@endif
@@ -225,31 +196,87 @@
 </section>
 
 <script>
-	var variants = {!! $variants->toJson() !!};
+ let variants = {!! $variants->toJson() !!};
 	
-	var attributeids = $( "select[id^='attribute']" ).map(function() {
-    	return $(this).attr('id');
-	}).get();
-	$( "select[id^='attribute']" ).change(function(){
-		var idOfChangedDropdown = $(this).attr('id');
-		var valOfChangedDropDown = $(this).val();
-		filtered = $(variants);
-		if (valOfChangedDropDown != '') {
-			filtered = filtered.filter(function(i, n) {
-				return n[idOfChangedDropdown] == valOfChangedDropDown; 
-			});
+ let attributeids_names = $( ".pdp-select--type ul" ).map(function() {
+    	return $(this).attr('class');
+ }).get();
+
+ let attributeids_values = $( ".pdp-select--type ul li" ).map(function() {
+    	return $(this).attr('data-value');
+ }).get();
+
+$(document).on('click','.filter',function(){
+	let value = $(this).data('value');
+	let key = $(this).data('id');
+	$('.pdp-select--type').find(".head_"+key+" span").text(value).removeClass("valerror");
+	$("input[name='"+key+"']").val(value);
+	$("."+key).find("li").removeClass("selected");
+	let data = $.grep( variants, function( n, i ) {
+	  return n[key]==value;
+	});
+	let uniqueNames = [];
+	for(i = 0; i< data.length; i++){  
+		for(x in attributeids_names) {
+			if(uniqueNames.indexOf(data[i][attributeids_names[x]]) === -1){
+		        uniqueNames.push(data[i][attributeids_names[x]]);        
+		    }    
 		}
-		for(x in attributeids) {
-			var idOfCurrentDropDown = attributeids[x];
-			var valOfCurrentDropDown = $('#' + attributeids[x]).val();
-			if( idOfChangedDropdown != idOfCurrentDropDown && valOfCurrentDropDown != '' ) {
-				filtered = filtered.filter(function(i, n) {
-					return n[idOfCurrentDropDown] == valOfCurrentDropDown; 
-				});	
+	}
+	$(".pdp-select--type ul").find("li").removeClass('visible');
+	$("."+key).find("li").removeClass("selected");
+	$(this).addClass("selected");
+	for(i = 0; i< uniqueNames.length; i++){  
+		let target = $(".pdp-select--type ul").find("li[data-value='" + uniqueNames[i] + "']");
+	    if(target.length > 0){
+             $(target).addClass('visible');
+	    }
+	}
+	$( ".filter" ).each(function( index ) {
+		if(!$(this).hasClass('visible')){
+			if($(this).hasClass('selected')){
+				let attr_id = $(this).attr('data-id');
+				$(".head_"+attr_id).find("span").text("");
+				$("input[name='"+attr_id+"']").val("");
+				$(this).removeClass("selected");
 			}
 		}
-		console.log(filtered);
+	});
+	return false;
+});
 
+function validate(){
+   $(".pdp-select--type p").find("span").removeClass("valerror");
+   $(".quantity").find("label span").removeClass("valerror").text("");
+   let form = true;
+   for(i = 0; i< attributeids_names.length; i++){  
+   	   if($("input[name='"+attributeids_names[i]+"']").val()==''){
+          $(".head_"+attributeids_names[i]).find("span").text(" - Please Select Option").addClass("valerror");
+          form = false;
+   	   }
+   }
+
+   if($('#quantity').val()==''){
+   	   $(".quantity").find("label span").text(" - Please Enter Quantity").addClass("valerror");
+      form = false;
+   }
+
+   if(form == false){
+       return false;
+   }
+
+    let product = $(".add-to-cart > button").val();
+        $.ajax({
+            url: "/cart", 
+            method: "post", 
+            data: { product: product },
+            success: function(result) {
+                $(".fa-shopping-cart").text(result);
+                console.log(true);
+            }
+        });
+    return false;
+}
 </script>
 
 @endsection
