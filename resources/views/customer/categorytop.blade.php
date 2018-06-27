@@ -18,7 +18,7 @@
 			@foreach ($subCategories as $subCategory)
 			<div class="col-sm-4">
 				<div class="category-wrapper">
-					<a href="/{{ $subCategory->slug}}">
+					<a href="/category/{{ $subCategory->slug}}">
 						<div class="img">
 							<img src="{{ asset('images/' . $subCategory->image) }}" alt="">
 							<div class="size">

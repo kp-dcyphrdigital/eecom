@@ -17,8 +17,6 @@ Route::post('/payment', 'PaymentController@store');
 
 Route::post('/subscribers/new', 'SubscriberController@store');
 
-Route::get('/categories', 'CategoryController@index');
-
 Route::get('/category/{category}', 'ProductController@index');
 Route::get('/product/{product}', 'ProductController@show');
 Route::get('/product/{product}/{colour}', 'ProductController@show');

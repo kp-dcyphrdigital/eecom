@@ -12,13 +12,13 @@ class ProductController extends Controller
 	public function index(Category $category, Product $product)
 	{
 		if ($category->depth < 2) {
-			$subCategories = $category->descendants()->get();	
+			$subCategories = $category->children()->get();	
 			return view( 'customer.categorytop', compact('category', 'subCategories') );
 		} else {
 			$categories = $category->descendants()->pluck('id');
 			$categories[] = $category->getKey();
 			$products = $category->whereIn('id', $categories)
-									->with('products')
+									->with('products.variants')
 									->get()
 									->map( function($category) {
 										return $category->products;

@@ -187,7 +187,7 @@
             @if( $level1->children->count() )
             <ul class="cd-secondary-nav is-hidden">
               <li class="go-back"><a href="#">Main Menu</a></li>
-              <li class="see-all"><a href="/{{ $level1->slug }}">Shop All {{ $level1->name }}</a></li>
+              <li class="see-all"><a href="/category/{{ $level1->slug }}">Shop All {{ $level1->name }}</a></li>
               @foreach($level1->children as $level2)
               <li @if( $level2->children->count() ) class="has-children" @endif>
                 <a href="/category/{{ $level2->slug }}">{{ $level2->name }}</a>

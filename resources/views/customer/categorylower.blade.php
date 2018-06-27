@@ -166,18 +166,18 @@
 
 						@foreach ($products as $product)
 						<div class="col-md-3 col-sm-6">
-							<a href="/{{ $category->slug }}/{{ $product->slug }}">
+							<a href="/product/{{ $product->slug }}">
 								<div class="product-wrapper">
 									<div class="img">
 										<img src="{{ asset('/images/' . $product->image) }}" data-src="{{ asset('/images/' . $product->image) }}" data-hover="{{ asset('/images/' . $product->image) }}" alt="">
 										
 										@if($product->badge === 'New')
 										<span class="new">NEW</span>
-										@elseif($product->price < $product->rrp)
+										@elseif($product->variants->max('price') < $product->variants->max('rrp'))
 										<span class="sale">Sale!</span>
 										@endif
 
-										@if($product->stock === 0)
+										@if($product->variants->max('stock') === 0)
 										<div class="out">OUT OF STOCK</div>
 										@endif
 
@@ -197,9 +197,9 @@
 										</div>
 										@endif
 
-										<p class="price">&dollar;{{ $product->price }}
-											@if($product->price < $product->rrp)
-											<del>&dollar;{{ $product->rrp }}</del>
+										<p class="price">&dollar;{{ $product->variants->max('price') }}
+											@if($product->variants->max('price') < $product->variants->max('rrp'))
+											<del>&dollar;{{ $product->variants->max('rrp') }}</del>
 											@endif
 										</p>
 	
