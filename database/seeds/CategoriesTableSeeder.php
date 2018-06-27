@@ -4,11 +4,6 @@ use Illuminate\Database\Seeder;
 
 class CategoriesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {	
 		$categories = DB::table('AddlonData')->select(DB::raw('DISTINCT STOCK_CATEGORY, SUB_CATEGORY_NAME, `SUB CATEGORY 2`'))->get();
@@ -56,7 +51,6 @@ class CategoriesTableSeeder extends Seeder
 						    'description' => 'Product Description Here',
 						    'image' => 'products/skate1.jpg',
 						    'rating' => 4,
-						    'featured' => 1,
 						    'slug' => rtrim(str_slug($product->STOCK_ALPHA . $product->STYLE, '-') . "/" . str_slug($product->COLOUR, '-'), "/"),
 						    'brand' => $product->BRAND,
 						]);
@@ -81,6 +75,9 @@ class CategoriesTableSeeder extends Seeder
 				});
 			});
 		});
+		DB::update('UPDATE products AS p JOIN 
+			( SELECT MIN(id) MinID FROM products GROUP BY STYLE HAVING COUNT(*) > 0) 
+				AS m ON p.ID = m.MinID SET p.hero = 1, p.featured = 1');
     }
     public function getSequence($item)
     {

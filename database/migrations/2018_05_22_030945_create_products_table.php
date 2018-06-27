@@ -18,6 +18,7 @@ class CreateProductsTable extends Migration
             $table->char('slug', 100);
             $table->string('style');
             $table->string('colour');
+            $table->boolean('hero')->default(0);
             $table->string('name', 100);
             $table->text('description');
             $table->string('image');

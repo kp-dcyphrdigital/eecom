@@ -19,5 +19,7 @@ Route::post('/subscribers/new', 'SubscriberController@store');
 
 Route::get('/categories', 'CategoryController@index');
 
-Route::get('/{category}', 'ProductController@index');
-Route::get('/{category}/{product}', 'ProductController@show')->middleware('productdisplayable');
+Route::get('/category/{category}', 'ProductController@index');
+Route::get('/product/{product}', 'ProductController@show');
+Route::get('/product/{product}/{colour}', 'ProductController@show');
+

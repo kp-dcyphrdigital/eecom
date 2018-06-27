@@ -14,18 +14,19 @@ class HomePageController extends Controller
         	// [2,4,6] below denotes homepage featured product categories 
 			// which presumably will come from the DB eventually
             return Category::whereIn('id', [3,86,121])->with(['products'=> function($query) {
-            	$query->where('featured', 1);
+                $query->where('featured', 1)->where('hero', 1)->with('variants');
             }])->get();
         });
-        $products = $products->map(function ($product, $key) {
-    		if ($product->id == 3) {
-    			$product->name = 'Featured Skates';
-    		} else if ($product->id == 86) {
-    			$product->name = 'Featured Sticks';
-    		} else if ($product->id == 121) {
-    			$product->name = 'Featured Gloves';
+
+        $products = $products->map(function ($category) {
+    		if ($category->id == 3) {
+    			$category->name = 'Featured Skates';
+    		} else if ($category->id == 86) {
+    			$category->name = 'Featured Gloves';
+    		} else if ($category->id == 121) {
+    			$category->name = 'Featured Sticks';
     		}
-    		return $product;
+    		return $category;
 		});
 		return view( 'customer.index', compact('products') );
 	}

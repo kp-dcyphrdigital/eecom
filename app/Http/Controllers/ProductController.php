@@ -28,8 +28,20 @@ class ProductController extends Controller
 		}
 	}
 
-	public function show(Category $category, Product $product)
+	public function show($productslug, $colour = null)
 	{
+		if ($colour) {
+			$productslug = $productslug . "/" . $colour;
+			$product = Product::where('slug', 'LIKE', "%$productslug%")->first();
+		} else {
+			$product = Product::where('hero', 1)
+						->where('slug', 'LIKE', "%$productslug%")
+						->first();
+		}
+		if ( ! $product ) {
+			abort(404);
+		}
+
 		$variants = $product->variants;
 		for ($i=1; $variants->pluck('attribute' . $i)->unique()->values()->first() != null ; $i++) {
 			$attributeSet[] = $variants->pluck('attribute' . $i)->unique()->values();
