@@ -80,10 +80,12 @@ class CategoriesTableSeeder extends Seeder
 		DB::update('UPDATE products AS p JOIN 
 			( SELECT MIN(id) MinID FROM products GROUP BY STYLE HAVING COUNT(*) > 0) 
 				AS m ON p.ID = m.MinID SET p.hero = 1, p.featured = 1');
+
+		DB::update('UPDATE variants SET stock = 0 WHERE style = "1047261"');
     }
+    
     public function getSequence($item)
     {
-
     	if ($item == 'Hockey Skates') {
     		return 0;
     	} else if ($item == 'Hockey Sticks') {

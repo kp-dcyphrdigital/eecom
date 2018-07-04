@@ -12,7 +12,7 @@
 	<div id="homepage-product{{ $loop->iteration }}" class="owl-carousel owl-theme info-wrapper">
 	@foreach($category->products as $product) 
 		<div class="item">
-			<a href="/product/{{ $product->slug }}">
+			<a href="/p/{{ $product->slug }}">
 				<div class="product-wrapper">
 					<div class="img">
 						<img src="{{ asset('/images/' . $product->image) }}" alt="{{ $product->name }}">

@@ -27,7 +27,30 @@ class CartController extends Controller
 
     public function store()
     {
-    	// Validating that product has been sent, is a valid product and in stock
+        // Validating that sku that has been sent, is a valid and order qty is in stock
+        request()->validate([
+            'quantity' => 'integer|min:1',
+            'sku' => [
+                'required',
+                Rule::exists('variants', 'sku')->where(function ($query) {
+                    $query->where('stock', '>=', request('quantity'));
+                }),
+            ],
+        ]);
+
+        $cart = Cart::create([
+            'cart_id' => 1,
+            'sku' => request('sku'),
+            'quantity' => request('quantity'),
+         ]);
+
+        return response()->json([
+            'success' => true,
+            'cartid' => $cart->cart_id,
+            'cartcount' => Cart::where('cart_id', $cart->cart_id)->count(),
+        ]);
+
+/*    	// Validating that product has been sent, is a valid product and in stock
         request()->validate([
             'product' => [
                 'required',
@@ -50,6 +73,6 @@ class CartController extends Controller
             });
             session()->put('cart.count', session('cart.count') + 1);
         }
-		return response( session('cart.count') )->cookie('skaters', session('cart.id'), 60);
+		return response( session('cart.count') )->cookie('skaters', session('cart.id'), 60);*/
     }
 }

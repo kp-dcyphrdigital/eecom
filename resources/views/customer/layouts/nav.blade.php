@@ -183,20 +183,20 @@
 
           @foreach($navtree as $level1)
           <li class="top_level category @if($level1->children->count()) has-children @endif">
-            <a href="/category/{{ $level1->slug }}">{{ $level1->name }}</a>
+            <a href="/c/{{ $level1->slug }}">{{ $level1->name }}</a>
             @if( $level1->children->count() )
             <ul class="cd-secondary-nav is-hidden">
               <li class="go-back"><a href="#">Main Menu</a></li>
-              <li class="see-all"><a href="/category/{{ $level1->slug }}">Shop All {{ $level1->name }}</a></li>
+              <li class="see-all"><a href="/c/{{ $level1->slug }}">Shop All {{ $level1->name }}</a></li>
               @foreach($level1->children as $level2)
               <li @if( $level2->children->count() ) class="has-children" @endif>
-                <a href="/category/{{ $level2->slug }}">{{ $level2->name }}</a>
+                <a href="/c/{{ $level2->slug }}">{{ $level2->name }}</a>
                 @if( $level2->children->count() )
                 <ul class="is-hidden">
                   <li class="go-back"><a href="#">Back</a></li>
                   <li class="see-all"><a href="#">All {{ $level2->name }}</a></li>
                   @foreach($level2->children as $level3)
-                  <li class="sub_item"><a href="/category/{{ $level3->slug }}">{{ $level3->name }}</a></li>
+                  <li class="sub_item"><a href="/c/{{ $level3->slug }}">{{ $level3->name }}</a></li>
                   @endforeach
                 </ul>
               @endif

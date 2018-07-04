@@ -265,11 +265,20 @@ function validate(){
        return false;
    }
 
+	chosenvariant = variants;
+	for(i = 0; i< attributeids_names.length; i++){
+		chosenvariant = chosenvariant.filter(function(n) {
+	    	return n[attributeids_names[i]] == $("input[name='" + attributeids_names[i] + "']").val();
+	  	});
+	}
+   chosenquantity = $('#quantity').val();
+   chosensku = chosenvariant[0].sku;
+
     let product = $(".add-to-cart > button").val();
         $.ajax({
             url: "/cart", 
             method: "post", 
-            data: { product: product },
+            data: { sku: chosensku, quantity: chosenquantity },
             success: function(result) {
                 $(".fa-shopping-cart").text(result);
                 console.log(true);

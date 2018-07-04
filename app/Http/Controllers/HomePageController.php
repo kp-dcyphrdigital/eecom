@@ -11,7 +11,7 @@ class HomePageController extends Controller
 	public function index()
 	{
 		$products = Cache::remember('products', 60, function() { 
-        	// [2,4,6] below denotes homepage featured product categories 
+        	// [3,86,121] below denotes homepage featured product categories 
 			// which presumably will come from the DB eventually
             return Category::whereIn('id', [3,86,121])->with(['products'=> function($query) {
                 $query->where('featured', 1)->where('hero', 1)->with('variants');

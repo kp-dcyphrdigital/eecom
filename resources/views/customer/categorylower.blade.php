@@ -166,7 +166,7 @@
 
 						@foreach ($products as $product)
 						<div class="col-md-3 col-sm-6">
-							<a href="/product/{{ $product->slug }}">
+							<a href="/p/{{ $product->slug }}">
 								<div class="product-wrapper">
 									<div class="img">
 										<img src="{{ asset('/images/' . $product->image) }}" data-src="{{ asset('/images/' . $product->image) }}" data-hover="{{ asset('/images/' . $product->image) }}" alt="">
