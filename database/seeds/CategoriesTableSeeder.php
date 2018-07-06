@@ -51,7 +51,7 @@ class CategoriesTableSeeder extends Seeder
 						    'description' => 'Product Description Here',
 						    'image' => 'products/skate1.jpg',
 						    'rating' => 4,
-						    'slug' => rtrim(str_slug($product->STOCK_ALPHA . $product->STYLE, '-') . "/" . str_slug($product->COLOUR, '-'), "/"),
+						    'slug' => rtrim(str_slug($product->STOCK_ALPHA . "-" . $product->STYLE, '-') . "/" . str_slug($product->COLOUR, '-'), "/"),
 						    'brand' => trim($product->BRAND),
 						]);
 						$createdproduct->categories()->attach([$l3id]);

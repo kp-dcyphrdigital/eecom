@@ -11,6 +11,7 @@ class ProductController extends Controller
 
 	public function index(Category $category, Product $product)
 	{
+
 		if ($category->depth < 2) {
 			$subCategories = $category->children()->get();	
 			return view( 'customer.categorytop', compact('category', 'subCategories') );
@@ -18,30 +19,39 @@ class ProductController extends Controller
 			$categories = $category->descendants()->pluck('id');
 			$categories[] = $category->getKey();
 			$products = $category->whereIn('id', $categories)
+					->with(['products' => function ($query) {
+    					$query->where('hero', 1)
+    					->with('variants');
+					}])
+					->get()									->map( function($category) {
+										return $category->products;
+									})->flatten()
+									->unique('id');
+/* App\Models\Product::where('hero', 1)->whereHas('categories', function($query) { return $query->whereIn('id', [10]); })->with('variants')->get()*/
+/*			$products = $category->whereIn('id', $categories)
 									->with('products.variants')
 									->get()
 									->map( function($category) {
 										return $category->products;
 									})->flatten()
-									->unique('id');
+									->unique('id');*/
 			return view( 'customer.categorylower', compact('category', 'products') );
 		}
 	}
 
 	public function show($productslug, $colour = null)
 	{
-		$style = Product::where('slug', 'LIKE', "%$productslug%")->pluck('style')->first();
-		if ( ! $style ) {
-			abort(404);
-		}
-		$product = Product::where('slug', 'LIKE', "%$productslug")->first();
 		if ($colour) {
 			$productslug = $productslug . "/" . $colour;
-			$product = Product::where('slug', 'LIKE', "%$productslug")->first();
+			$product = Product::where('slug', $productslug)->first();
 		} else {
 			$product = Product::where('hero', 1)
-						->where('slug', 'LIKE', "%$productslug%")
+						->where('slug', $productslug)
 						->first();
+		}
+
+		if ( ! $product ) {
+			abort(404);
 		}
 
 		$variants = $product->variants;

@@ -19,5 +19,5 @@ Route::post('/subscribers/new', 'SubscriberController@store');
 
 Route::get('/c/{category}', 'ProductController@index');
 Route::get('/p/{product}', 'ProductController@show');
-Route::get('/product/{product}/{colour}', 'ProductController@show');
+Route::get('/p/{product}/{colour}', 'ProductController@show');
 

@@ -44,10 +44,13 @@ class CartController extends Controller
             'quantity' => request('quantity'),
          ]);
 
+        $cartcount = Cart::where('cart_id', $cart->cart_id)->count(); 
+        session()->put('cart.count', $cartcount);
+
         return response()->json([
             'success' => true,
             'cartid' => $cart->cart_id,
-            'cartcount' => Cart::where('cart_id', $cart->cart_id)->count(),
+            'cartcount' => $cartcount,
         ]);
 
 /*    	// Validating that product has been sent, is a valid product and in stock

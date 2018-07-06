@@ -41,18 +41,16 @@
 	                    <i class="fa fa-compress" aria-hidden="true"></i>
 	                </div>
 				    <ul id="pdp-zoom--image">
-				        <li data-thumb="http://syginteractive.com/web/skaters/images/products/product1.jpg">
-				            <img src="http://syginteractive.com/web/skaters/images/products/thumbs/thumb1.jpg" />
+				        <li data-thumb="{{ asset('/images/' . $product->image) }}">
+				            <img src="{{ asset('/images/' . $product->image) }}" />
 				        </li>
-				        <li data-thumb="http://syginteractive.com/web/skaters/images/products/product2.jpg">
-				            <img src="http://syginteractive.com/web/skaters/images/products/thumbs/thumb2.jpg" />
-				        </li>
-				        <li data-thumb="http://syginteractive.com/web/skaters/images/products/product3.jpg">
-				            <img src="http://syginteractive.com/web/skaters/images/products/thumbs/thumb3.jpg" />
-				        </li>
-				        <li data-thumb="http://syginteractive.com/web/skaters/images/products/product4.jpg">
-				            <img src="http://syginteractive.com/web/skaters/images/products/thumbs/thumb4.jpg" />
-				        </li>
+				        @for ($i = 2; $i < 4; $i++)
+    						@if ($product->{'image' . $i} != null)
+						        <li data-thumb="{{ asset( '/images/' . $product->{'image' . $i} ) }}">
+						            <img src="{{ asset( '/images/' . $product->{'image' . $i} ) }}" />
+						        </li>    						
+    						@endif
+						@endfor
 				    </ul>
 				</div>
 			</div>
@@ -280,8 +278,8 @@ function validate(){
             method: "post", 
             data: { sku: chosensku, quantity: chosenquantity },
             success: function(result) {
-                $(".fa-shopping-cart").text(result);
-                console.log(true);
+                $(".cart-number").text(result.cartcount);
+                console.log(result.cartcount);
             }
         });
     return false;
